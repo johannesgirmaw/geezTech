@@ -99,7 +99,7 @@ CORS_ALLOWED_ORIGINS = (
 "http://localhost:8000",
 )
 
-CSRF_TRUSTED_ORIGINS = ["localhost:3000"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 # dependencies = [
 #     # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
@@ -115,8 +115,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'elearning',
-        'USER':"egeaz",
-        "PASSWORD":"egeaz",
+        'USER':"etech",
+        "PASSWORD":"etech",
         "HOST":"localhost",
         "PORT":"5432",
     }
