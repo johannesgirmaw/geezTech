@@ -2,6 +2,5 @@ db.sqlite3
 commons/__pycache__/
 
 commons/authentication/__pycache__/
-commons/authentication/migrations/
 commons/migrations/
 elearning_backend/__pycache__/
