@@ -176,5 +176,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 
 ACCOUNT_EMAIL_REQUIRED = False
 
-# AUTH_USER_MODEL = 'authentication.CustomUser'
+AUTH_USER_MODEL = 'authentication.CustomUser'
 django_heroku.settings(locals())
