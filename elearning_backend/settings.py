@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    # 3rd-party apps
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -47,10 +49,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
-    'commons.apps.CommonsConfig',
-    'commons.authentication.apps.AuthenticationConfig',
     'allauth.socialaccount.providers.google',
     'corsheaders',  
+    "drf_spectacular",
+    # Local
+    'commons.apps.CommonsConfig',
+    'commons.authentication.apps.AuthenticationConfig',
+
 ]
 
 REST_FRAMEWORK = {
@@ -63,7 +68,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -177,4 +184,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
+
+SPECTACULAR_SETTINGS = {
+"TITLE": "eLearning API Project",
+"DESCRIPTION": "eLearning platform build for geezTech",
+"VERSION": "1.0.0",
+# OTHER SETTINGS
+}
+
 django_heroku.settings(locals())
