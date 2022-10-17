@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # Local
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
-    # 'applications.course.apps.CourseConfig'
+    'applications.category.apps.CategoryConfig',
 
 ]
 
@@ -124,8 +124,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecommerce',
-        'USER': "admin",
-        "PASSWORD": "admin",
+        'USER': "etech",
+        "PASSWORD": "etech",
         "HOST": "localhost",
         "PORT": "5432",
     }
