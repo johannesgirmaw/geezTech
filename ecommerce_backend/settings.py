@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
     'applications.category.apps.CategoryConfig',
-
+    'applications.sub_category.apps.SubCategoryConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -124,8 +124,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecommerce',
-        'USER': "admin",
-        "PASSWORD": "admin",
+        'USER': "etech",
+        "PASSWORD": "etech",
         "HOST": "localhost",
         "PORT": "5432",
     }
