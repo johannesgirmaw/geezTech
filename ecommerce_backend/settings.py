@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'commons.authentication.apps.AuthenticationConfig',
     'applications.category.apps.CategoryConfig',
     'applications.sub_category.apps.SubCategoryConfig',
+    'applications.product.apps.ProductConfig',
+
 ]
 
 REST_FRAMEWORK = {
