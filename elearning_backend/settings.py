@@ -91,9 +91,7 @@ TEMPLATES = [
     },
 ]
 
-# dependencies = [
-#     # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-# ]
+
 
 WSGI_APPLICATION = 'elearning_backend.wsgi.application'
 
@@ -154,12 +152,25 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
+LOGIN_URL="commons/authorize/login"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
-
-ACCOUNT_EMAIL_REQUIRED = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True   
+EMAIL_PORT = 587
+EMAIL_HOST_USER="getdera6591@gmail.com"
+EMAIL_HOST_PASSWORD = "xchocvltmlthwpej"
+# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = ""
+# xchocvltmlthwpej
+# ACCOUNT_AUTHENTICATION_METHOD = 'username'
+# egeazelearning@gmail.com
+ACCOUNT_EMAIL_REQUIRED=True
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
