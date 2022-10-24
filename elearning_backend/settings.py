@@ -165,12 +165,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True   
 EMAIL_PORT = 587
-EMAIL_HOST_USER="getdera6591@gmail.com"
-EMAIL_HOST_PASSWORD = "xchocvltmlthwpej"
-# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = ""
-# xchocvltmlthwpej
-# ACCOUNT_AUTHENTICATION_METHOD = 'username'
-# egeazelearning@gmail.com
+EMAIL_HOST_USER="elearningegeez@gmail.com"
+EMAIL_HOST_PASSWORD = "qkjrcmhvqibijaio"
+
 ACCOUNT_EMAIL_REQUIRED=True
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
