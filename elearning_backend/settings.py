@@ -180,13 +180,23 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # new
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
+LOGIN_URL="commons/authorize/login"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True   
+EMAIL_PORT = 587
+EMAIL_HOST_USER="elearningegeez@gmail.com"
+EMAIL_HOST_PASSWORD = "qkjrcmhvqibijaio"
 
-ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED=True
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
