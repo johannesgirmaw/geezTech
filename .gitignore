@@ -3,6 +3,5 @@ commons/__pycache__/
 
 commons/authentication/__pycache__/
 commons/migrations/
-elearning_backend/__pycache__/
 
-media/
+ecommerce_backend/__pycache__/
