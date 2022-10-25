@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    # 3rd-party apps
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
@@ -47,23 +49,29 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.google',
+    'corsheaders',
+    "drf_spectacular",
+    # Local
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
-    'allauth.socialaccount.providers.google',
-    'corsheaders',  
+    'applications.course.apps.CourseConfig'
+
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend'
-        ],
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -96,8 +104,8 @@ TEMPLATES = [
 ]
 
 CORS_ALLOWED_ORIGINS = (
-"http://localhost:3000",
-"http://localhost:8000",
+    "http://localhost:3000",
+    "http://localhost:8000",
 )
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
@@ -116,10 +124,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'elearning',
-        'USER':"etech",
-        "PASSWORD":"etech",
-        "HOST":"localhost",
-        "PORT":"5432",
+        'USER': "etech",
+        "PASSWORD": "etech",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
@@ -162,8 +170,12 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"] # new
-STATIC_ROOT = BASE_DIR / "staticfiles" # new
+STATICFILES_DIRS = [BASE_DIR / "static"]  # new
+STATIC_ROOT = BASE_DIR / "staticfiles"  # new
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
+
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # new
 # Default primary key field type
@@ -177,4 +189,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "eLearning API Project",
+    "DESCRIPTION": "eLearning platform build for geezTech",
+    "VERSION": "1.0.0",
+    # OTHER SETTINGS
+}
+
 django_heroku.settings(locals())
