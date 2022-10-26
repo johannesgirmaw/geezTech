@@ -72,6 +72,7 @@ REST_FRAMEWORK = {
     ),
 
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "commons.exceptions.api_exception_handler",
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
