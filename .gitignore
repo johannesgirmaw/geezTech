@@ -2,6 +2,17 @@ db.sqlite3
 commons/__pycache__/
 
 commons/authentication/__pycache__/
+commons/authentication/migrations/
 commons/migrations/
 
-ecommerce_backend/__pycache__/
+eleaning_backend/__pycache__/
+applications/__pycache__/
+applications/assignment/migrations/
+applications/course/__pycache__/
+applications/assignment/__pycache__/
+applications/course/migrations/
+applications/category/migrations/
+applications/category/migrations/
+applications/category/__pycache__/
+target/
+runserver.sh
