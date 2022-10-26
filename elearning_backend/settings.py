@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     # Local
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
-    'applications.course.apps.CourseConfig'
+    'applications.course.apps.CourseConfig',
+    'applications.category.apps.CategoryConfig',
 
 ]
 
@@ -174,7 +175,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]  # new
 STATIC_ROOT = BASE_DIR / "staticfiles"  # new
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # new
