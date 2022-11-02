@@ -2,7 +2,6 @@ from distutils.command.upload import upload
 from pydoc import describe
 import uuid
 from django.db import models
-from django.conf import settings
 from commons.authentication.models import CustomUser
 from applications.category.models import Category
 
@@ -15,7 +14,7 @@ class Course(models.Model):
     instructor_id = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT)
     reviewer_id = models.ForeignKey(CustomUser, on_delete=models.PROTECT, related_name ="reviewer")
-    catagory_id = models.ForeignKey(Category, on_delete=models.PROTECT)
+    catagory_id = models.ForeignKey(Category, on_delete=models.PROTECT, )
     course_name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
     course_image = models.ImageField(

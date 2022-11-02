@@ -1,9 +1,15 @@
+from .permissions import IsStaffEditorPermission
+from rest_framework import authentication, permissions
 from rest_framework import generics
 from .models import Course
 from .serializers import CourseSerializer
 
 
 class CourseListCreateView(generics.ListCreateAPIView):
+    # authentication_classes = [authentication.SessionAuthentication]
+    # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
+    permission_classes = [
+        permissions.DjangoModelPermissions, IsStaffEditorPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
@@ -26,5 +32,7 @@ class CourseListCreateView(generics.ListCreateAPIView):
 #     lookup_field = "pk"
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [
+        permissions.DjangoModelPermissions]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
