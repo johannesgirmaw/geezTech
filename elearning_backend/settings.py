@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'corsheaders',
     "drf_spectacular",
+    "django_filters",
     # Local
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
@@ -74,6 +75,9 @@ REST_FRAMEWORK = {
 
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "commons.exceptions.api_exception_handler",
+    'DEFAULT_PAGINATION_CLASS': 'applications.course.paginations.CustomPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -182,7 +186,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # new
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-LOGIN_URL="commons/authorize/login"
+LOGIN_URL = "commons/authorize/login"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -193,12 +197,12 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True   
+EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER="elearningegeez@gmail.com"
+EMAIL_HOST_USER = "elearningegeez@gmail.com"
 EMAIL_HOST_PASSWORD = "qkjrcmhvqibijaio"
 
-ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_EMAIL_REQUIRED = True
 
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
