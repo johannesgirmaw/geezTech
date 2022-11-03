@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'corsheaders',
     "drf_spectacular",
+    'django_filters',
     # Local
     'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
