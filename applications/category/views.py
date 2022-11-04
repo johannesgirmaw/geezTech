@@ -1,13 +1,11 @@
-from django.shortcuts import render
 from rest_framework import generics, permissions
 from applications.category.models import Category
 from applications.category.serializers import CategorySerializer
 from rest_framework import filters
-# Create your views here.
-from io import BytesIO
-from django.template.loader import get_template
 from django.http import HttpResponse
-from xhtml2pdf import pisa
+# Create your views here.
+
+from commons.utils.file_utils import render_to_pdf
 
 
 class DetailCategory(generics.RetrieveUpdateDestroyAPIView):
@@ -25,21 +23,8 @@ class ListCategory(generics.ListCreateAPIView):
 
 class GeneratePdf(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
-        data = {
-             'today': 12, 
-             'amount': 39.99,
-            'customer_name': 'Cooper Mann',
-            'order_id': 1233434,
-        }
+        data = {"category": Category.objects.all()}
         pdf = render_to_pdf('invoice.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
 
-def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html  = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
 

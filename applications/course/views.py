@@ -11,8 +11,7 @@ from rest_framework import filters
 class CourseListCreateView(generics.ListCreateAPIView):
     # authentication_classes = [authentication.SessionAuthentication]
     # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
-    permission_classes = [
-        permissions.DjangoModelPermissions, IsStaffEditorPermission]
+    # permission_classes = [IsStaffEditorPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
