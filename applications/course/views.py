@@ -3,6 +3,8 @@ from rest_framework import authentication, permissions
 from rest_framework import generics
 from .models import Course
 from .serializers import CourseSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 
 class CourseListCreateView(generics.ListCreateAPIView):
@@ -13,6 +15,10 @@ class CourseListCreateView(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['course_name']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['course_name']
 
 # class CourseDetailRetrieveView(generics.RetrieveAPIView):
 #     queryset = Course.objects.all()
