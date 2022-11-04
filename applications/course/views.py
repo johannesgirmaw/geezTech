@@ -1,5 +1,5 @@
 
-from .permissions import IsStaffEditorPermission
+from commons.authentication.permissions import CustomPermission
 from rest_framework import authentication, permissions
 from rest_framework import generics
 from .models import Course
@@ -9,6 +9,7 @@ from rest_framework import filters
 
 
 class CourseListCreateView(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
     # authentication_classes = [authentication.SessionAuthentication]
     # permission_classes = [permissions.IsAdminUser, IsStaffEditorPermission]
     # permission_classes = [IsStaffEditorPermission]
@@ -38,7 +39,6 @@ class CourseListCreateView(generics.ListCreateAPIView):
 #     lookup_field = "pk"
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [
-        permissions.DjangoModelPermissions]
+    permission_classes = [CustomPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
