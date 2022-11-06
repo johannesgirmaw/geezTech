@@ -4,6 +4,8 @@ from applications.category.models import Category
 from applications.category.serializers import CategorySerializer
 from rest_framework import filters
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 from commons.utils.file_utils import render_to_pdf
@@ -28,5 +30,15 @@ class GeneratePdf(generics.ListAPIView):
         data = {"category": Category.objects.all()}
         pdf = render_to_pdf('invoice.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+class SendEmail(generics.ListAPIView):
+    # permission_classes = [CustomPermission]
+    def get(self,request):
+        message = "well come baby"
+        email = request.user.email
+        print(email)
+        send_mail('well come',  message,  settings.EMAIL_HOST_USER,[email],fail_silently=False,)
+    
+        return HttpResponse('message send success fully')
+
 
 

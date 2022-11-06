@@ -4,4 +4,5 @@ class CustomPermission(permissions.DjangoModelPermissions):
         'GET': ['%(app_label)s.view_%(model_name)s'],
         'OPTIONS': [],
         'HEAD': [],
+        'POST': ['%(app_label)s.view_%(model_name)s'],
     }
