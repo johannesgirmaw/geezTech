@@ -113,9 +113,9 @@ TEMPLATES = [
 #     "http://localhost:3000",
 #     "http://localhost:8000",
 # )
-CORS_ALLOWED_ORIGINS = ("*")
+CORS_ALLOW_ALL_ORIGINS = True
 # CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
-CSRF_TRUSTED_ORIGINS = ["*"]
+# CSRF_TRUSTED_ORIGINS = ["*"]
 
 # dependencies = [
 #     # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
