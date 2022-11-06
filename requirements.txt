@@ -1,5 +1,5 @@
-algoliasearch==2.6.2
-algoliasearch-django==2.0.0
+# algoliasearch==2.6.2
+# algoliasearch-django==2.0.0
 arabic-reshaper==2.1.4
 asgiref==3.5.2
 asn1crypto==1.5.1
@@ -15,9 +15,9 @@ coreschema==0.0.4
 cryptography==37.0.4
 cssselect2==0.7.0
 defusedxml==0.7.1
-dj-database-url==1.0.0
+# dj-database-url==1.0.0
 dj-rest-auth==2.2.5
-Django
+Django == 3.2
 django-allauth==0.50.0
 
 django-cors-headers==3.10.1
