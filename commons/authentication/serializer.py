@@ -2,6 +2,7 @@ from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from django.db import transaction
 from .models import CustomUser
+from django.contrib.auth.models import Group, Permission
 
 
 class CustomRegisterSerializer(RegisterSerializer):
@@ -20,6 +21,21 @@ class CustomRegisterSerializer(RegisterSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
+    # groups = serializers.SlugRelatedField(
+    #     queryset=Group.objects.all(), slug_field='name')
+    groups = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
+    user_permissions = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
+
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        fields = ("id", "username", "first_name", "last_name", "email", "is_staff", "is_active",
+                  "is_superuser", "last_login", "date_joined", 'groups', 'user_permissions')
