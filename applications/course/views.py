@@ -15,28 +15,10 @@ class CourseListCreateView(generics.ListCreateAPIView):
     # permission_classes = [IsStaffEditorPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-
-    # filter_backends = [DjangoFilterBackend]
-    # filterset_fields = ['course_name']
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['course_name']
+    ordering_fields = ['course_name', 'course_description']
 
-# class CourseDetailRetrieveView(generics.RetrieveAPIView):
-#     queryset = Course.objects.all()
-#     serializer_class = CourseSerializer
-#     lookup_field = "pk"
-
-
-# class CourseDetailUpdateView(generics.UpdateAPIView):
-#     queryset = Course.objects.all()
-#     serializer_class = CourseSerializer
-#     lookup_field = "pk"
-
-
-# class CourseDetailDestroyView(generics.DestroyAPIView):
-#     queryset = Course.objects.all()
-#     serializer_class = CourseSerializer
-#     lookup_field = "pk"
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [CustomPermission]

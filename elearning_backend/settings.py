@@ -75,7 +75,7 @@ REST_FRAMEWORK = {
 
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "commons.exceptions.api_exception_handler",
-    'DEFAULT_PAGINATION_CLASS': 'applications.course.paginations.CustomPagination',
+    'DEFAULT_PAGINATION_CLASS': 'commons.paginations.CustomPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
@@ -109,12 +109,13 @@ TEMPLATES = [
     },
 ]
 
-CORS_ALLOWED_ORIGINS = (
-    "http://localhost:3000",
-    "http://localhost:8000",
-)
-
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+# CORS_ALLOWED_ORIGINS = (
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+# )
+CORS_ALLOW_ALL_ORIGINS = True
+# CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+# CSRF_TRUSTED_ORIGINS = ["*"]
 
 # dependencies = [
 #     # migrations.swappable_dependency(settings.AUTH_USER_MODEL),
