@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class CommonsConfig(AppConfig):
+class MessageUtilConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'commons'
+    name = 'commons.message_util'

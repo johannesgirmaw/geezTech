@@ -19,7 +19,7 @@ class DetailCategory(generics.RetrieveUpdateDestroyAPIView):
 
 class ListCategory(generics.ListCreateAPIView):
     permission_classes = [CustomPermission]
-    queryset = Category.objects.all().filter(category_name = 'food')
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['category_name', 'description']
