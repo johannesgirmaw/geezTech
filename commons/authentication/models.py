@@ -9,5 +9,8 @@ class CustomUser(AbstractUser):
                           default=uuid.uuid4, editable=False, max_length=36)
     middle_name = models.CharField(max_length=200, default="")
 
+    class Meta:
+        ordering = ('username', 'first_name', 'last_name')
+
     def __str__(self):
         return self.first_name
