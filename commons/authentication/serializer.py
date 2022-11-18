@@ -27,7 +27,6 @@ class AdminRegisterSerializer(RegisterSerializer):
         user = super().save(request)
         user.first_name = self.data.get('first_name')
         user.last_name = self.data.get('last_name')
-        user.is_superuser = True
         user.is_staff = True
         user.save()
         return user
