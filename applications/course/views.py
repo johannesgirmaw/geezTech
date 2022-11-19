@@ -6,15 +6,16 @@ from .models import Course, Course_Cart, Enrollement
 from .serializers import CourseSerializer, CourseCartSerializer, EnrollementSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-
+from commons.paginations import CustomCursorPagination
 
 class CourseListCreateView(generics.ListCreateAPIView):
     permission_classes = [CustomPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    pagination_class = CustomCursorPagination
+    filter_backends = [filters.SearchFilter]
     search_fields = ['course_name']
-    ordering_fields = ['course_name', 'course_description']
+    # ordering_fields = ['course_name', 'course_description']
 
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):

@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.conf import settings
 from django.http import FileResponse
+from commons.paginations import CustomCursorPagination
 # Create your views here.
 
 from commons.utils.file_utils import render_to_pdf
@@ -23,6 +24,7 @@ class ListCategory(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+    pagination_class = CustomCursorPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['category_name', 'description']
     ordering_fields = ['category_name', 'description']

@@ -20,7 +20,6 @@ class SendEmail(generics.ListCreateAPIView):
         data = request.POST
         recievers = dict(data)['recievers']
         emails = []
-        print(data, recievers)
         for reciever in recievers:
             user = CustomUser.objects.get(id = reciever)
             emails.append(user.email)
