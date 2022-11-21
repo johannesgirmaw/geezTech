@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'applications.course.apps.CourseConfig',
     'applications.category.apps.CategoryConfig',
     'applications.chapters.apps.ChaptersConfig',
+    'applications.content.apps.ContentConfig',
 ]
 
 REST_FRAMEWORK = {

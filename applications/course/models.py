@@ -5,7 +5,7 @@ from django.db import models
 from commons.authentication.models import CustomUser
 from applications.category.models import Category
 from rest_enumfield import EnumField
-from .enums import CourseLevel, CourseType
+from commons.enums import CourseLevel, CourseType
 # Create your models here.
 
 
