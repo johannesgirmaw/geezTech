@@ -16,3 +16,9 @@ class CourseLevel(enum.Enum):
 class ContentType(enum.Enum):
     content = 100
     question = 101
+
+
+CART_STATUS = [
+    (100, 'ordered'),
+    (101, 'enrolled'),
+]

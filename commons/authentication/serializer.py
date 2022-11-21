@@ -8,17 +8,28 @@ from django.contrib.auth.models import Group, Permission
 class CustomRegisterSerializer(RegisterSerializer):
     first_name = serializers.CharField(max_length=200)
     last_name = serializers.CharField(max_length=200)
-    # age=serializers.IntegerField()
 
     @transaction.atomic
     def save(self, request):
         user = super().save(request)
         user.first_name = self.data.get('first_name')
         user.last_name = self.data.get('last_name')
-        # user.age=self.data.get('age')
         user.save()
         return user
 
+
+class AdminRegisterSerializer(RegisterSerializer):
+    first_name = serializers.CharField(max_length=200)
+    last_name = serializers.CharField(max_length=200)
+
+    @transaction.atomic
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.data.get('first_name')
+        user.last_name = self.data.get('last_name')
+        user.is_staff = True
+        user.save()
+        return user
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -39,3 +50,4 @@ class UserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = ("id", "username", "first_name", "last_name", "email", "is_staff", "is_active",
                   "is_superuser", "last_login", "date_joined", 'groups', 'user_permissions')
+

@@ -8,4 +8,14 @@ runserver.sh
 run.sh
 media/
 createsuperuser.sh
+commons/authentication/__pycache__
+commons/authentication/migrations
+commons/migrations
 
+applications/__pycache__
+applications/category/__pycache__
+applications/category/migrations
+applications/course/__pycache__
+applications/course/migrations
+commons/message_util/migrations
+commons/utils/__pycache__
