@@ -1,14 +1,13 @@
 
 from django.urls import path
-from .views import CourseListCreateView, CourseDetail
+from .views import CourseListCreateView, CourseDetail,CourseCartListCreateView,EnrollementListCreateView, EnrollementDetail
 
 urlpatterns = [
-    path("course/", CourseListCreateView.as_view(), name="course_list_create"),
-    path("course/<uuid:pk>/update", CourseDetail.as_view(),
+    path("", CourseListCreateView.as_view(), name="course_list_create"),
+    path("<uuid:pk>/update", CourseDetail.as_view(),
          name="course_Update"),
-
-    #     path("course/<uuid:pk>/retrieve", CourseDetailRetrieveView.as_view(),
-    #          name="course_retrieve"),
-    #     path("course/<uuid:pk>/delete", CourseDetailDestroyView.as_view(),
-    #          name="course_destroy"),
+    path("cart/", CourseCartListCreateView.as_view(),
+         name="course_cart"),
+     path("enroll/", EnrollementListCreateView.as_view(), name = "course_enroll"),
+     path("enroll/<uuid:id>", EnrollementDetail.as_view(), name = "course_enroll_detail"),
 ]

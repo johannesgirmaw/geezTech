@@ -1,4 +1,3 @@
-
 from rest_framework.views import exception_handler
 from http import HTTPStatus
 from typing import Any
@@ -30,5 +29,7 @@ def api_exception_handler(exc: Exception, context: "dict[str, Any]") -> Response
         error["status_code"] = status_code
         error["message"] = http_code_to_message[status_code]
         error["details"] = response.data
+        print(response)
         response.data = error_payload
     return response
+

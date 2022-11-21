@@ -59,10 +59,10 @@ INSTALLED_APPS = [
     "django_filters",
     'rest_framework_simplejwt.token_blacklist',
     # Local
-    'commons.apps.CommonsConfig',
     'commons.authentication.apps.AuthenticationConfig',
     'applications.course.apps.CourseConfig',
     'applications.category.apps.CategoryConfig',
+    'commons.message_util.apps.MessageUtilConfig',
     'applications.chapters.apps.ChaptersConfig',
 ]
 
@@ -197,7 +197,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = "http://localhost:3000/user/activate/12"
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = None
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 
@@ -218,6 +218,10 @@ SPECTACULAR_SETTINGS = {
     "VERSION": "1.0.0",
     # OTHER SETTINGS
 }
+RESET_PASSWORD_VERIFICATION_URL = "https://geez-elearning.herokuapp.com/reset_pwd"
+URL_FRONT = "https://geez-elearning.herokuapp.com/"
+ACCOUNT_ADAPTER = 'commons.utils.authenticaton_utils.DefaultAccountAdapterCustom'
+REGISTER_VERIFICATION_URL = "http://localhost:3000/user/activate"
 
 # Managing refresh tokens
 SIMPLE_JWT = {
