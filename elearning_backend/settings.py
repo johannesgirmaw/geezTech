@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'applications.category.apps.CategoryConfig',
     'commons.message_util.apps.MessageUtilConfig',
     'applications.chapters.apps.ChaptersConfig',
+    'applications.content.apps.ContentConfig',
 ]
 
 REST_FRAMEWORK = {
