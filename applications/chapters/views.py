@@ -1,5 +1,5 @@
 from rest_framework import generics
-from commons.authentication.permissions import CustomPermission
+from commons.permission.permissions import CustomPermission
 from applications.chapters.models import Chapter
 from applications.chapters.serializers import ChapterSerializer
 from rest_framework import filters

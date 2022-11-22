@@ -4,7 +4,7 @@ from django.db import models
 from commons.authentication.models import CustomUser
 from applications.category.models import Category
 from rest_enumfield import EnumField
-from commons.enums import CourseLevel, CourseType, CART_STATUS
+from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS
 # Create your models here.
 
 
@@ -29,16 +29,20 @@ class Course(models.Model):
     course_price_id = models.CharField(max_length=100,  default=" ")
     assisitant_instructor_id = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="assistant", null=True)
-    course_type = EnumField(choices=CourseType, to_choice=lambda x: (
-        x.value, x.name), to_repr=lambda x: x.value)
-    course_level = EnumField(choices=CourseLevel, to_choice=lambda x: (
-        x.value, x.name), to_repr=lambda x: x.value)
+    course_type = models.IntegerField(choices=COURSE_TYPE, default=100)
+    course_level = models.IntegerField(choices=COURE_LEVEL, default=100)
 
     class Meta:
         ordering = ('course_name',)
 
     def __str__(self):
         return self.course_name
+
+    def get_course_type_display(self, obj):
+        return obj.get_course_type_display()
+
+    def get_course_level_display(self, obj):
+        return obj.get_course_level_display()
 
 
 class Course_Cart(models.Model):

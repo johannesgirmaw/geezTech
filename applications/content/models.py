@@ -3,7 +3,7 @@ from django.db import models
 from commons.authentication.models import CustomUser
 from applications.chapters.models import Chapter
 from rest_enumfield import EnumField
-from commons.enums import ContentType
+from commons.enums import CONTENT_TYPE
 # Create your models here.
 
 
@@ -35,8 +35,7 @@ class Content(models.Model):
     content_creator_id = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="content_creator", null=True)
 
-    content_type = EnumField(choices=ContentType, to_choice=lambda x: (
-        x.value, x.name), to_repr=lambda x: x.value)
+    content_type = models.IntegerField(choices=CONTENT_TYPE, default=100)
 
     class Meta:
         ordering = ('content_title',)
