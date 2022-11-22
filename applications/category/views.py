@@ -1,5 +1,5 @@
 from rest_framework import generics
-from commons.authentication.permissions import CustomPermission
+from commons.permission.permissions import CustomPermission
 from applications.category.models import Category
 from applications.category.serializers import CategorySerializer
 from rest_framework import filters
@@ -39,7 +39,8 @@ class ListCategory(generics.ListCreateAPIView):
 class GeneratePdf(generics.ListAPIView):
     permission_classes = [CustomPermission]
     queryset = Category.objects.all()
-    def get(self,request):
+
+    def get(self, request):
         data = {"category": Category.objects.all()}
         pdf = render_to_pdf('invoice.html', data)
         return HttpResponse(pdf, content_type='application/pdf')

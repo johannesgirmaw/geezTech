@@ -1,7 +1,6 @@
 from urllib import response
 from rest_framework import pagination
 from rest_framework.response import Response
-from collections import OrderedDict
 
 
 class CustomPagination(pagination.PageNumberPagination):
@@ -15,9 +14,12 @@ class CustomPagination(pagination.PageNumberPagination):
         response['next'] = self.get_next_link()
         response['previous'] = self.get_previous_link()
         return response
+
+
 class CustomCursorPagination(pagination.CursorPagination):
     page_size = 2
     ordering = 'category_name'
+
     def get_ordering(self, request, queryset, view):
         ordering = None
         ordering_filters = [

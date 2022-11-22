@@ -1,24 +1,31 @@
-import enum
 
+COURSE_TYPE = [
+    (100, 'free'),
+    (101, 'premium'),
+    (102, 'sponsord'),
+]
 
-class CourseType(enum.Enum):
-    free = 100
-    premium = 101
-    sponsord = 102
+COURE_LEVEL = [
+    (100, 'biginner'),
+    (101, 'intermediate'),
+    (102, 'advanced'),
+]
 
-
-class CourseLevel(enum.Enum):
-    biginner = 100
-    intermediate = 101
-    advanced = 102
-
-
-class ContentType(enum.Enum):
-    content = 100
-    question = 101
+CONTENT_TYPE = [
+    (100, 'content'),
+    (101, 'question'),
+]
 
 
 CART_STATUS = [
     (100, 'ordered'),
     (101, 'enrolled'),
+]
+
+RATING_VALUES = [
+    (100, 'excellent'),
+    (101, 'very good'),
+    (102, 'good'),
+    (103, 'not bad'),
+    (104, 'bad'),
 ]
