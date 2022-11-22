@@ -1,11 +1,10 @@
 from distutils.command.upload import upload
 import uuid
 from django.db import models
+from applications.course.validations import Validations
 from commons.authentication.models import CustomUser
 from applications.category.models import Category
-from rest_enumfield import EnumField
-from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS
-# Create your models here.
+from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS, RATING_VALUES
 
 
 class Course(models.Model):
@@ -38,12 +37,6 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name
 
-    def get_course_type_display(self, obj):
-        return obj.get_course_type_display()
-
-    def get_course_level_display(self, obj):
-        return obj.get_course_level_display()
-
 
 class Course_Cart(models.Model):
     id = models.CharField(primary_key=True, unique=True,
@@ -73,3 +66,30 @@ class Enrollement(models.Model):
 
     def get_absolute_url(self):
         return reverse("Enrollement_detail", kwargs={"pk": self.pk})
+
+
+class Reviewer(models.Model):
+    id = models.CharField(primary_key=True, unique=True,
+                          default=uuid.uuid4, editable=False, max_length=36)
+    reviewer_id = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, related_name='users_review')
+    course_id = models.ForeignKey(
+        Course, on_delete=models.PROTECT, related_name='courses_review')
+    comment = models.TextField(max_length=200, default="review note")
+    rating = models.IntegerField(choices=RATING_VALUES)
+    review_time = models.TimeField(auto_now=True)
+    review_date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.comment
+
+
+class CoursePrice(models.Model):
+    id = models.CharField(primary_key=True, unique=True,
+                          default=uuid.uuid4, editable=False, max_length=36)
+    course_id = models.ForeignKey(
+        Course, on_delete=models.PROTECT, related_name='courses_price')
+    price = models.FloatField(
+        validators=[Validations.validate_price], default=0.0)
+    instructor_price = models.FloatField(
+        validators=[Validations.validate_price])

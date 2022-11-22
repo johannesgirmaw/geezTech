@@ -1,8 +1,8 @@
 
 from commons.permission.permissions import CustomPermission
 from rest_framework import generics
-from .models import Course, Course_Cart, Enrollement
-from .serializers import CourseSerializer, CourseCartSerializer, EnrollementSerializer
+from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
+from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer
 from rest_framework import filters
 from commons.paginations import CustomCursorPagination
 
@@ -45,3 +45,27 @@ class EnrollementDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [CustomPermission]
     queryset = Enrollement.objects.all()
     serializer_class = EnrollementSerializer
+
+
+class ReviewerListCreateView(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
+    queryset = Reviewer.objects.all()
+    serializer_class = CourseReviewSerializer
+
+
+class ReviewerDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [CustomPermission]
+    queryset = Reviewer.objects.all()
+    serializer_class = CourseReviewSerializer
+
+
+class CoursePriceListCreateView(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
+    queryset = CoursePrice.objects.all()
+    serializer_class = CoursePriceSerializer
+
+
+class CoursePriceDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [CustomPermission]
+    queryset = CoursePrice.objects.all()
+    serializer_class = CoursePriceSerializer

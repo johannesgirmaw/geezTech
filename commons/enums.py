@@ -21,3 +21,11 @@ CART_STATUS = [
     (100, 'ordered'),
     (101, 'enrolled'),
 ]
+
+RATING_VALUES = [
+    (100, 'excellent'),
+    (101, 'very good'),
+    (102, 'good'),
+    (103, 'not bad'),
+    (104, 'bad'),
+]
