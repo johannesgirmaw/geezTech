@@ -6,7 +6,7 @@ from .models import Course, Course_Cart, Enrollement
 from .serializers import CourseSerializer, CourseCartSerializer, EnrollementSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-from commons.paginations import CustomCursorPagination
+from commons.utils.paginations import CustomCursorPagination
 
 class CourseListCreateView(generics.ListCreateAPIView):
     permission_classes = [CustomPermission]

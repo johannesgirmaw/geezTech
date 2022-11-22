@@ -16,7 +16,7 @@ class SendEmail(generics.ListCreateAPIView):
     serializer_class = EmailMessageSerializer
     search_fields = ['subject', 'message_body']
 
-    def post(self, request):
+    def post(self, request,*args, **kwargs):
         data = request.POST
         recievers = dict(data)['recievers']
         emails = []
@@ -24,5 +24,6 @@ class SendEmail(generics.ListCreateAPIView):
             user = CustomUser.objects.get(id = reciever)
             emails.append(user.email)
         send_mail(data['subject'],  data['message_body'],  settings.EMAIL_HOST_USER, emails)
-        return JsonResponse({'data':"message send"},status = HTTPStatus.ACCEPTED)
+        create=self.create(request, *args, **kwargs)
+        return create
 

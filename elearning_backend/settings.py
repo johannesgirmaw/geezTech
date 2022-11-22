@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'commons.message_util.apps.MessageUtilConfig',
     'applications.chapters.apps.ChaptersConfig',
     'applications.content.apps.ContentConfig',
+    'applications.assignment.apps.AssignmentConfig',
 ]
 
 REST_FRAMEWORK = {
@@ -80,8 +81,8 @@ REST_FRAMEWORK = {
     ),
 
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    "EXCEPTION_HANDLER": "commons.exceptions.api_exception_handler",
-    'DEFAULT_PAGINATION_CLASS': 'commons.paginations.CustomPagination',
+    "EXCEPTION_HANDLER": "commons.utils.exceptions.api_exception_handler",
+    'DEFAULT_PAGINATION_CLASS': 'commons.utils.paginations.CustomPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }

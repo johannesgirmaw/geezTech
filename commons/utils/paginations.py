@@ -14,7 +14,6 @@ class CustomPagination(pagination.PageNumberPagination):
         response['count'] = self.page.paginator.count
         response['next'] = self.get_next_link()
         response['previous'] = self.get_previous_link()
-        print(response.__dict__["data"])
         return response
 class CustomCursorPagination(pagination.CursorPagination):
     page_size = 2
