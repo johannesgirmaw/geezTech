@@ -9,7 +9,7 @@ from django.conf import settings
 from django.http import FileResponse
 from commons.paginations import CustomCursorPagination
 # Create your views here.
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from commons.utils.file_utils import render_to_pdf
 
 
@@ -20,7 +20,7 @@ class DetailCategory(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ListCategory(generics.ListCreateAPIView):
-    permission_classes = [CustomPermission]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 

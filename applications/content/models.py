@@ -39,6 +39,10 @@ class Content(models.Model):
 
     class Meta:
         ordering = ('content_title',)
+        constraints = [
+            models.UniqueConstraint(fields=[
+                                    "content_number", "chapter_id"], name='content should be only in single chapter'),
+        ]
 
     def __str__(self):
         return self.content_title

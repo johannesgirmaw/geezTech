@@ -7,6 +7,15 @@ from applications.category.models import Category
 from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS, RATING_VALUES
 
 
+class CoursePrice(models.Model):
+    id = models.CharField(primary_key=True, unique=True,
+                          default=uuid.uuid4, editable=False, max_length=36)
+    price = models.FloatField(
+        validators=[Validations.validate_price], default=0.0)
+    instructor_price = models.FloatField(
+        validators=[Validations.validate_price])
+
+
 class Course(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
@@ -25,7 +34,8 @@ class Course(models.Model):
         max_length=100, default="description")
     course_video = models.FileField(upload_to="course/course_video/",
                                     null=True,  default=" ")
-    course_price_id = models.CharField(max_length=100,  default=" ")
+    course_price = models.ForeignKey(
+        CoursePrice, on_delete=models.PROTECT, related_name='course_price')
     assisitant_instructor_id = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="assistant", null=True)
     course_type = models.IntegerField(choices=COURSE_TYPE, default=100)
@@ -82,14 +92,3 @@ class Reviewer(models.Model):
 
     def __str__(self):
         return self.comment
-
-
-class CoursePrice(models.Model):
-    id = models.CharField(primary_key=True, unique=True,
-                          default=uuid.uuid4, editable=False, max_length=36)
-    course_id = models.ForeignKey(
-        Course, on_delete=models.PROTECT, related_name='courses_price')
-    price = models.FloatField(
-        validators=[Validations.validate_price], default=0.0)
-    instructor_price = models.FloatField(
-        validators=[Validations.validate_price])

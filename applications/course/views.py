@@ -11,7 +11,7 @@ class CourseListCreateView(generics.ListCreateAPIView):
     permission_classes = [CustomPermission]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    pagination_class = CustomCursorPagination
+    # pagination_class = CustomCursorPagination
     filter_backends = [filters.SearchFilter]
     search_fields = ['course_name']
     # ordering_fields = ['course_name', 'course_description']
