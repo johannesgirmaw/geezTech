@@ -19,3 +19,4 @@ applications/course/__pycache__
 applications/course/migrations
 commons/message_util/migrations
 commons/utils/__pycache__
+commons/message_util/__pycache__
