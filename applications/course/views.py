@@ -4,7 +4,7 @@ from rest_framework import generics
 from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer
 from rest_framework import filters
-from commons.paginations import CustomCursorPagination
+from commons.utils.paginations import CustomCursorPagination
 
 
 class CourseListCreateView(generics.ListCreateAPIView):

@@ -54,7 +54,7 @@ class Course_Cart(models.Model):
     user_id = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name='users_cart')
     course_id = models.ForeignKey(
-        Course, on_delete=models.CASCADE, related_name="course_carts")
+        Course, on_delete=models.CASCADE, default=None, related_name="course_carts")
     status = models.IntegerField(choices=CART_STATUS)
 
     def __str__(self):
