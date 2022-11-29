@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'applications.chapters.apps.ChaptersConfig',
     'applications.content.apps.ContentConfig',
     'applications.assignment.apps.AssignmentConfig',
+    'commons.feedback.apps.FeedbackConfig'
 ]
 
 REST_FRAMEWORK = {
