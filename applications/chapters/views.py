@@ -3,6 +3,9 @@ from commons.permission.permissions import CustomPermission
 from applications.chapters.models import Chapter
 from applications.chapters.serializers import ChapterSerializer
 from rest_framework import filters
+from rest_framework.response import Response
+
+from rest_framework import serializers
 
 
 class DetailChapter(generics.RetrieveUpdateDestroyAPIView):
@@ -20,11 +23,34 @@ class ListChapter(generics.ListCreateAPIView):
     search_fields = ['chapter_name', 'Chapter_title', 'chapter_number']
     ordering_fields = ['chapter_name', 'Chapter_title', 'chapter_number']
 
-    def get(self, request, *args, **kwargs):
-        # print("self:", self.check_permissions, "request:", dir(request),
-        #       "args:", *args, "**args", **kwargs)
-        pk = kwargs.get("pk")
-        print("pk:", pk)
-        if pk is not None:
-            return self.retrieve(request, *args, **kwargs)
-        return self.list(request, *args, **kwargs)
+    def list(self, request):
+        if self.request.GET.get("course_id"):
+            queryset = Chapter.objects.filter(course=self.request.GET.get(
+                "course_id")).order_by('chapter_number').all()
+            serailizer = ChapterSerializer(queryset, many=True)
+            return Response(serailizer.data)
+        else:
+            queryset = Chapter.objects.order_by('chapter_number').all()
+            serailizer = ChapterSerializer(queryset, many=True)
+            return Response(serailizer.data)
+
+    def perform_create(self, serializer):
+        if self.request.GET.get("course_id"):
+
+            last_chapter = Chapter.objects.filter(course=self.request.POST.get(
+                "course")).order_by("chapter_number").last()
+            chapter = self.request.data
+            if last_chapter != None:
+                chapter_number = last_chapter.chapter_number + 1
+            else:
+                chapter_number = 1
+            # Since get post methods return immutable dictionary
+            chapter = chapter.copy()
+            chapter["chapter_number"] = chapter_number
+
+            serializer = ChapterSerializer(data=chapter)
+            if serializer.is_valid():
+                return super().perform_create(serializer)
+        else:
+            raise serializers.ValidationError(
+                ('Course id is already enrolled'))

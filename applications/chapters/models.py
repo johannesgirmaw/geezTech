@@ -12,7 +12,7 @@ class Chapter(models.Model):
 
     chapter_name = models.CharField(max_length=50)
     chapter_title = models.CharField(max_length=50)
-    chapter_number = models.IntegerField(default=0, unique=True)
+    chapter_number = models.IntegerField(default=0)
     course = models.ForeignKey(
         Course, on_delete=models.PROTECT, related_name='courses_id', null=True)
 

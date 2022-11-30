@@ -1,6 +1,6 @@
-from rest_framework.reverse import reverse
 from rest_framework import serializers
 from applications.chapters.models import Chapter
+from rest_framework.validators import UniqueTogetherValidator
 
 
 class ChapterSerializer(serializers.ModelSerializer):
@@ -8,9 +8,15 @@ class ChapterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chapter
-        fields = ['chapter_name', 'url']
+        fields = ['id', 'chapter_name', 'chapter_title',
+                  'chapter_number', 'course', 'url']
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Chapter.objects.all(),
+                fields=['chapter_name', 'chapter_title', 'course', ]
+            )
+        ]
 
     def get_url(self, obj):
         request = self.context.get("request")
-        print("request", request.__dict__)
         return f"/applications/chapters/"

@@ -64,15 +64,12 @@ class Course_Cart(models.Model):
 class Enrollement(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    user_id = models.ForeignKey(
+    user = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name='users_enroll')
-    course_id = models.ForeignKey(
+    course = models.ForeignKey(
         Course, default=None, null=True, on_delete=models.CASCADE, related_name="course_enroll")
     enroll_start_date = models.DateField(auto_now=True, auto_now_add=False)
     enroll_end_date = models.DateField(auto_now=False, auto_now_add=False)
-
-    def __str__(self):
-        return self.name
 
     def get_absolute_url(self):
         return reverse("Enrollement_detail", kwargs={"pk": self.pk})

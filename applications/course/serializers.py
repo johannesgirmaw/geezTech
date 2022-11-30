@@ -1,12 +1,18 @@
 
 from rest_framework import serializers
+
+from applications.course_progress.serializers import CourseProgressSerializer
 from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    course_progress = CourseProgressSerializer(many=True, read_only=True)
+
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ('id', 'instructor_id', 'reviewer_id', 'catagory_id', 'course_name',
+                  'course_code', 'course_image', 'created_at', 'updated_at', 'course_description',
+                  'course_video', 'course_price', 'assisitant_instructor_id', 'course_type', 'course_level', 'course_progress')
 
 
 class CourseCartSerializer(serializers.ModelSerializer):
