@@ -7,4 +7,5 @@ class CommonsModel(models.Model):
     
     class Meta:
         abstract = True
+        # ordering = ('create_date')
     

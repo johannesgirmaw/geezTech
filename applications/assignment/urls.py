@@ -7,6 +7,6 @@ urlpatterns = [
     path("", ListQuestions.as_view()),
     path("options/<uuid:id>/", DetailOptions.as_view()),    
     path("options/", ListOptions.as_view()),
-    path("answer/<uuid:id>/", ListAnswers.as_view()),
-    path("answer/", DetailAnswers.as_view()),
+    path("answer/<uuid:id>/", ListAnswers.as_view(), name= 'answers_detail'),
+    path("answer/", DetailAnswers.as_view(),name='answers_list'),
 ]

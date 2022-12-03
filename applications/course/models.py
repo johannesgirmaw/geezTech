@@ -3,7 +3,7 @@ import uuid
 from django.db import models
 from applications.course.validations import Validations
 from applications.category.models import Category
-from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS, RATING_VALUES
+from commons.utils.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS, RATING_VALUES
 
 from commons.utils.model_utils import CommonsModel
 from django.conf import settings
@@ -34,10 +34,12 @@ class Course(CommonsModel):
 
     class Meta:
         ordering = ('course_name',)
+        default_permissions = ('add','change','delete')
 
     def __str__(self):
         return self.course_name
-
+    def created_at(self):
+        return self.create_date
 
 class Course_Cart(CommonsModel):
     user_id = models.ForeignKey(

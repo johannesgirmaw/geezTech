@@ -1,6 +1,6 @@
 
 from rest_framework import generics
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 
 from .models import Answers, Options, Questions, UserAnswers, UserQuizeResults
 from .serializers import AnswersSerializer, QuestionsSerializer, OptionsSerializer, UserAnswersSerializer, UserQuizeResultsSerializer

@@ -6,7 +6,7 @@ from http import HTTPStatus
 from rest_framework import generics
 from .serializers import EmailMessageSerializer
 from .models import EmailMessage
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 from commons.authentication.models import CustomUser
 
 # Create your views here.

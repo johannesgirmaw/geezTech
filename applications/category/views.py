@@ -1,5 +1,5 @@
 from rest_framework import generics
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 from applications.category.models import Category
 from applications.category.serializers import CategorySerializer
 from rest_framework import filters
