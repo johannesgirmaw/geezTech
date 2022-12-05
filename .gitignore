@@ -20,3 +20,9 @@ applications/course/migrations
 commons/message_util/migrations
 commons/utils/__pycache__
 commons/message_util/__pycache__
+applications/category/migrations/
+applications/chapters/migrations/
+applications/content/migrations/
+applications/course/migrations/
+commons/authentication/migrations/
+applications/course_progress/migrations/
