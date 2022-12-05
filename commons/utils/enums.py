@@ -1,3 +1,4 @@
+from django.db import models
 
 COURSE_TYPE = [
     (100, 'free'),
@@ -29,3 +30,9 @@ RATING_VALUES = [
     (103, 'not bad'),
     (104, 'bad'),
 ]
+
+
+class PROGRESS_STATUS(models.IntegerChoices):
+    STARTED = 100
+    ON_PROGRESS = 101
+    FINISHED = 102

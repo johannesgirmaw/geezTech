@@ -1,10 +1,17 @@
 from rest_framework import serializers
 from applications.chapters.models import Chapter
+from rest_framework.validators import UniqueTogetherValidator
 
 
 class ChapterSerializer(serializers.ModelSerializer):
-    chapter_number = serializers.FloatField(read_only = True)
-    detail_url = serializers.HyperlinkedIdentityField(view_name = 'chapter-detail',lookup_field = 'pk')
+
     class Meta:
         model = Chapter
-        fields = ['create_date','detail_url','id','chapter_name', 'chapter_title','course_id','chapter_number']
+        fields = ['id', 'chapter_name', 'chapter_title',
+                  'chapter_number', 'course', 'get_absolute_url']
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Chapter.objects.all(),
+                fields=['chapter_name', 'chapter_title', 'course', ]
+            )
+        ]

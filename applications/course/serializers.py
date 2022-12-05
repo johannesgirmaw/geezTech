@@ -1,12 +1,19 @@
 
 from rest_framework import serializers
+
+from applications.course_progress.serializers import CourseProgressSerializer
 from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    course_progress = CourseProgressSerializer(many=True, read_only=True)
+
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ('id', 'instructor_id', 'reviewer_id', 'catagory_id', 'course_name',
+                  'course_code', 'course_image', 'created_at', 'updated_at', 'course_description',
+                  'course_video', 'course_price', 'assisitant_instructor_id', 'course_type', 'course_level',
+                  'course_progress', 'get_absolute_url')
 
 
 class CourseCartSerializer(serializers.ModelSerializer):
@@ -18,7 +25,8 @@ class CourseCartSerializer(serializers.ModelSerializer):
 class EnrollementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollement
-        fields = '__all__'
+        fields = ('id', 'user', 'course', 'enroll_start_date',
+                  'enroll_end_date', 'get_absolute_url')
 
 
 class CourseReviewSerializer(serializers.ModelSerializer):
@@ -26,7 +34,8 @@ class CourseReviewSerializer(serializers.ModelSerializer):
         model = Reviewer
         verbose_name = 'Reviewer'
         verbose_name_plural = 'Reviewers'
-        fields = '__all__'
+        fields = ('id', 'reviewer', 'course', 'comment',
+                  'rating', 'review_time', 'review_date', 'get_absolute_url')
 
 
 class CoursePriceSerializer(serializers.ModelSerializer):
@@ -34,4 +43,4 @@ class CoursePriceSerializer(serializers.ModelSerializer):
         model = CoursePrice
         verbose_name = 'CoursePrice'
         verbose_name_plural = 'CoursePrices'
-        fields = '__all__'
+        fields = ('id', 'price', 'instructor_price', 'get_absolute_url')

@@ -12,7 +12,7 @@ from http import HTTPStatus
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 # Create your views here.
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from commons.utils.file_utils import render_to_pdf
 
 
@@ -32,6 +32,12 @@ class ListCategory(generics.ListCreateAPIView):
     search_fields = ['category_name', 'description']
     ordering_fields = ['category_name', 'description']
 
+    def post(self, request, *args, **kwargs):
+        x = Category.objects.filter(category_name='food').last()
+        request.data.__setitem__('category_name', 'x.description')
+        create = self.create(request, *args, **kwargs)
+        return create
+
 
 class GeneratePdf(generics.ListAPIView):
     permission_classes = [CustomPermission]
@@ -43,7 +49,7 @@ class GeneratePdf(generics.ListAPIView):
         return HttpResponse(pdf, content_type='application/pdf')
 
 # def category(request, pk=None,*args,**kwargs):
-#     method = request.method 
+#     method = request.method
 
 #     if method == 'GET':
 #         if pk is not None:
@@ -52,7 +58,7 @@ class GeneratePdf(generics.ListAPIView):
 #             Response(data)
 #         else:
 #             query_set  = Category.objects.all()
-#             data = CategorySerializer(query_set, many =True).data 
+#             data = CategorySerializer(query_set, many =True).data
 #             Response(data)
 #     if method == "POST":
 #         serializer = CategorySerializer(request.data)
@@ -71,5 +77,5 @@ class GeneratePdf(generics.ListAPIView):
 #             serializer.is_valid(raise_exception = True)
 #             serializer.save()
 #             data = serializer.validated_data
-            
+
 #             return Response(data)
