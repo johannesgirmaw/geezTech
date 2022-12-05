@@ -3,7 +3,8 @@ from applications.content.serializer import ContentSerializer
 from applications.content.models import Content
 from applications.chapters.serializers import ChapterSerializer
 from applications.course_progress.serializers import ChapterProgressSerializer, ContentProgressSerializer, CourseProgressSerializer
-from commons.permission.permissions import CustomPermission
+
+from commons.utils.permissions import CustomPermission
 from rest_framework import generics
 from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer
@@ -18,9 +19,9 @@ class CourseListCreateView(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     # pagination_class = CustomCursorPagination
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['course_name']
-    # ordering_fields = ['course_name', 'course_description']
+    ordering_fields = ['course_name', 'course_description']
 
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):

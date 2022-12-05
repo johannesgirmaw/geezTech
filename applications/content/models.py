@@ -4,11 +4,15 @@ from elearning_backend.settings import get_env_variable
 from django.urls import reverse
 from commons.authentication.models import CustomUser
 from applications.chapters.models import Chapter
-from commons.enums import CONTENT_TYPE
+from commons.utils.enums import CONTENT_TYPE
+from commons.utils.model_utils import CommonsModel
+from django.conf import settings
+
+User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 
-class Content(models.Model):
+class Content(CommonsModel):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
     chapter = models.ForeignKey(
@@ -17,19 +21,13 @@ class Content(models.Model):
     content_number = models.IntegerField(default=0)
 
     content_title = models.CharField(max_length=50)
-
     image_url = models.ImageField(
-        upload_to="course/content/content_image/", blank=True)
-
+        upload_to="course/content/content_image/", blank=True, null=True)
     doc_url = models.FileField(
-        upload_to="course/content/content_document/", blank=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
+        upload_to="course/content/content_document/", blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     content_description = models.CharField(
         max_length=100, default="description")
-
     video_url = models.FileField(upload_to="course/content/content_video/",
                                  default=" ")
 

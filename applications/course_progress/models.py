@@ -5,7 +5,7 @@ from applications.content.models import Content
 from django.urls import reverse
 from applications.course.models import Course
 from commons.authentication.models import CustomUser
-from commons.enums import PROGRESS_STATUS
+from commons.utils.enums import PROGRESS_STATUS
 from elearning_backend.settings import get_env_variable
 
 

@@ -4,10 +4,12 @@ from django.db import models
 from applications.course.models import Course
 from elearning_backend.settings import get_env_variable
 from django.urls import reverse
+from commons.utils.model_utils import CommonsModel
+
 # Create your models here.
 
 
-class Chapter(models.Model):
+class Chapter(CommonsModel):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
 

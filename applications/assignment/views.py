@@ -1,9 +1,9 @@
 
 from rest_framework import generics
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 
-from .models import Answers, Options, Questions
-from .serializers import AnswersSerializer, QuestionsSerializer, OptionsSerializer
+from .models import Answers, Options, Questions, UserAnswers, UserQuizeResults
+from .serializers import AnswersSerializer, QuestionsSerializer, OptionsSerializer, UserAnswersSerializer, UserQuizeResultsSerializer
 from rest_framework import filters
 from commons.utils.paginations import CustomCursorPagination
 # Create your views here.
@@ -48,3 +48,24 @@ class OptionsOfQuestions(generics.ListAPIView):
         return Options.objcets.get(id = self.kwargs.get('id')).order_by('?')
     
 
+class DetailUserAnswers(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [CustomPermission]
+    queryset = UserAnswers.objects.all()
+    serializer_class = UserAnswersSerializer
+
+
+class ListUserAnswers(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
+    queryset = UserAnswers.objects.all()
+    serializer_class = UserAnswersSerializer
+
+class DetailUserQuizeResults(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [CustomPermission]
+    queryset = UserQuizeResults.objects.all()
+    serializer_class = UserQuizeResultsSerializer
+
+
+class ListUserQuizeResults(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
+    queryset = UserQuizeResults.objects.all()
+    serializer_class = UserQuizeResultsSerializer

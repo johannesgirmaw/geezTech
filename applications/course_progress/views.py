@@ -1,11 +1,11 @@
 from applications.course.models import Course
-from commons.enums import PROGRESS_STATUS
+from commons.utils.enums import PROGRESS_STATUS
 from applications.chapters.serializers import ChapterSerializer
 from applications.chapters.models import Chapter
 from applications.content.models import Content
 from rest_framework import generics
 from applications.course_progress.models import UserChapterProgress, UserContentProgress, UserCourseProgress
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 from applications.course_progress.serializers import ChapterProgressSerializer, ContentProgressSerializer, CourseProgressSerializer
 
 

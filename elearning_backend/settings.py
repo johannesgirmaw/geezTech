@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     'applications.content.apps.ContentConfig',
     'applications.assignment.apps.AssignmentConfig',
     'applications.course_progress.apps.CourseProgressConfig',
+    'commons.feedback.apps.FeedbackConfig'
 ]
 
 REST_FRAMEWORK = {

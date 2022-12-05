@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from commons.utils.model_utils import CommonsModel
 
 # Create your models here.
 
