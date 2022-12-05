@@ -26,3 +26,5 @@ applications/content/migrations/
 applications/course/migrations/
 commons/authentication/migrations/
 applications/course_progress/migrations/
+
+
