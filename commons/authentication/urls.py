@@ -1,6 +1,6 @@
 
 from django.urls import path,include,re_path
-from .views import CustomRegisterView,ListUser,DetailUser, CustomUserManager
+from .views import CustomRegisterView,ListUser,DetailUser, CustomUserManager, ListGroup, DetailGroup,ListUserPermission
 from rest_auth.views import PasswordResetConfirmView
 from dj_rest_auth.registration.views import VerifyEmailView
 from commons.utils.regex_utils import token_regex, uuid_regex , key_regex 
@@ -8,6 +8,8 @@ from commons.utils.regex_utils import token_regex, uuid_regex , key_regex
 urlpatterns = [
     path("registration/",CustomRegisterView.as_view()),
     path("users/",ListUser.as_view()),
+    path("groups/", ListGroup().as_view()),
+    path("user_permissions/",ListUserPermission.as_view()),
     path('users/<uuid:pk>/',DetailUser.as_view()),
     path("manager/", CustomUserManager.as_view()),
     path('authorize/', include('dj_rest_auth.urls')),

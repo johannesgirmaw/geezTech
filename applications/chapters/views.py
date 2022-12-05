@@ -1,5 +1,5 @@
 from rest_framework import generics,serializers, filters
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 from applications.chapters.models import Chapter
 from applications.chapters.serializers import ChapterSerializer
 import math

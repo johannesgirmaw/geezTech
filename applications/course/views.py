@@ -1,5 +1,5 @@
 
-from commons.permission.permissions import CustomPermission
+from commons.utils.permissions import CustomPermission
 from rest_framework import generics
 from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer

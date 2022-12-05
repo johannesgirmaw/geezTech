@@ -13,9 +13,7 @@ class Chapter(CommonsModel):
     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
     class Meta:
         ordering = ('chapter_name', 'chapter_title')
-        unique_together =  ('course_id','chapter_number')
-        unique_together = ('course_id','chapter_name')
-        unique_together = ('course_id','chapter_title')
+        unique_together =[  ('course_id','chapter_number'), ('course_id','chapter_name'), ('course_id','chapter_title')]
 
     def __str__(self) -> str:
         return self.chapter_name

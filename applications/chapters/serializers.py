@@ -7,4 +7,4 @@ class ChapterSerializer(serializers.ModelSerializer):
     detail_url = serializers.HyperlinkedIdentityField(view_name = 'chapter-detail',lookup_field = 'pk')
     class Meta:
         model = Chapter
-        fields = ['detail_url','id','chapter_name', 'chapter_title','course_id','chapter_number']
+        fields = ['create_date','detail_url','id','chapter_name', 'chapter_title','course_id','chapter_number']

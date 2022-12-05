@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from applications.chapters.models import Chapter
 from rest_enumfield import EnumField
-from commons.enums import CONTENT_TYPE
+from commons.utils.enums import CONTENT_TYPE
 from commons.utils.model_utils import CommonsModel
 from django.conf import settings
 
@@ -18,7 +18,7 @@ class Content(CommonsModel):
         upload_to="course/content/content_image/", blank=True, null=True)
     doc_url = models.FileField(
         upload_to="course/content/content_document/", blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     content_description = models.CharField(
         max_length=100, default="description")
     video_url = models.FileField(upload_to="course/content/content_video/",
