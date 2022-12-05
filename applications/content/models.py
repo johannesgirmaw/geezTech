@@ -1,5 +1,7 @@
 import uuid
 from django.db import models
+from elearning_backend.settings import get_env_variable
+from django.urls import reverse
 from commons.authentication.models import CustomUser
 from applications.chapters.models import Chapter
 from commons.enums import CONTENT_TYPE
@@ -9,10 +11,10 @@ from commons.enums import CONTENT_TYPE
 class Content(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    chapter_id = models.OneToOneField(
+    chapter = models.ForeignKey(
         Chapter, on_delete=models.PROTECT)
 
-    content_number = models.IntegerField(default=0, unique=True)
+    content_number = models.IntegerField(default=0)
 
     content_title = models.CharField(max_length=50)
 
@@ -31,7 +33,7 @@ class Content(models.Model):
     video_url = models.FileField(upload_to="course/content/content_video/",
                                  default=" ")
 
-    content_creator_id = models.ForeignKey(
+    content_creator = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="content_creator",)
 
     content_type = models.IntegerField(
@@ -46,3 +48,8 @@ class Content(models.Model):
 
     def __str__(self):
         return self.content_title
+
+    def get_absolute_url(self):
+        relative_url = reverse('content_Update', args=[self.pk])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url

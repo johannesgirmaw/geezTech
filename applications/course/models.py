@@ -5,6 +5,8 @@ from applications.course.validations import Validations
 from commons.authentication.models import CustomUser
 from applications.category.models import Category
 from commons.enums import COURE_LEVEL, COURSE_TYPE, CART_STATUS, RATING_VALUES
+from elearning_backend.settings import get_env_variable
+from django.urls import reverse
 
 
 class CoursePrice(models.Model):
@@ -15,15 +17,20 @@ class CoursePrice(models.Model):
     instructor_price = models.FloatField(
         validators=[Validations.validate_price])
 
+    def get_absolute_url(self):
+        relative_url = reverse('course_progress_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
+
 
 class Course(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    instructor_id = models.ForeignKey(
+    instructor = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT)
-    reviewer_id = models.ForeignKey(
+    reviewer = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="reviewer")
-    catagory_id = models.ForeignKey(Category, on_delete=models.PROTECT, )
+    catagory = models.ForeignKey(Category, on_delete=models.PROTECT, )
     course_name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
     course_image = models.ImageField(
@@ -47,6 +54,11 @@ class Course(models.Model):
     def __str__(self):
         return self.course_name
 
+    def get_absolute_url(self):
+        relative_url = reverse('course_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
+
 
 class Course_Cart(models.Model):
     id = models.CharField(primary_key=True, unique=True,
@@ -60,6 +72,11 @@ class Course_Cart(models.Model):
     def __str__(self):
         return self.user_id
 
+    def get_absolute_url(self):
+        relative_url = reverse('course_progress_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
+
 
 class Enrollement(models.Model):
     id = models.CharField(primary_key=True, unique=True,
@@ -72,15 +89,17 @@ class Enrollement(models.Model):
     enroll_end_date = models.DateField(auto_now=False, auto_now_add=False)
 
     def get_absolute_url(self):
-        return reverse("Enrollement_detail", kwargs={"pk": self.pk})
+        relative_url = reverse('course_enroll_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
 
 
 class Reviewer(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    reviewer_id = models.ForeignKey(
+    reviewer = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name='users_review')
-    course_id = models.ForeignKey(
+    course = models.ForeignKey(
         Course, on_delete=models.PROTECT, related_name='courses_review')
     comment = models.TextField(max_length=200, default="review note")
     rating = models.IntegerField(choices=RATING_VALUES)
@@ -89,3 +108,8 @@ class Reviewer(models.Model):
 
     def __str__(self):
         return self.comment
+
+    def get_absolute_url(self):
+        relative_url = reverse('course_review_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url

@@ -9,7 +9,7 @@ from rest_framework import serializers
 
 
 class DetailChapter(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [CustomPermission]
+    # permission_classes = [CustomPermission]
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
 
@@ -35,7 +35,8 @@ class ListChapter(generics.ListCreateAPIView):
             return Response(serailizer.data)
 
     def perform_create(self, serializer):
-        if self.request.GET.get("course_id"):
+
+        if self.request.GET.get("course_id") or self.request.data["course"]:
 
             last_chapter = Chapter.objects.filter(course=self.request.POST.get(
                 "course")).order_by("chapter_number").last()

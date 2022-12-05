@@ -42,7 +42,7 @@ class CourseCartDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class EnrollementListCreateView(generics.ListCreateAPIView):
-    permission_classes = [CustomPermission]
+    # permission_classes = [CustomPermission]
     queryset = Enrollement.objects.all()
     serializer_class = EnrollementSerializer
 
@@ -88,7 +88,7 @@ class EnrollementListCreateView(generics.ListCreateAPIView):
 
 
 class EnrollementDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [CustomPermission]
+    # permission_classes = [CustomPermission]
     queryset = Enrollement.objects.all()
     serializer_class = EnrollementSerializer
 

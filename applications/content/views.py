@@ -19,8 +19,26 @@ class ContentListCreateView(generics.ListCreateAPIView):
     search_fields = ['content_title']
     ordering_fields = ['content_title', 'content_description']
 
+    def perform_create(self, serializer):
+        print(self.request.data["chapter"])
+
+        last_content = Content.objects.filter(
+            chapter=self.request.data["chapter"]).order_by("content_number").last()
+        if last_content != None:
+            last_content = last_content + 1
+        else:
+            last_content = 1
+
+        # Since data in request is immutable, It should be copied and updated
+        content = self.request.data.copy()
+        content["content_number"] = last_content
+
+        content_serializer = ContentSerializer(data=content)
+        if content_serializer.is_valid():
+            content_serializer.save()
+
 
 class ContentDetail(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [CustomPermission]
+    # permission_classes = [CustomPermission]
     queryset = Content.objects.all()
     serializer_class = ContentSerializer

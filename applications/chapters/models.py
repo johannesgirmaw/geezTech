@@ -2,7 +2,8 @@ import uuid
 from django.db import models
 
 from applications.course.models import Course
-
+from elearning_backend.settings import get_env_variable
+from django.urls import reverse
 # Create your models here.
 
 
@@ -21,3 +22,8 @@ class Chapter(models.Model):
 
     def __str__(self) -> str:
         return self.chapter_name
+
+    def get_absolute_url(self):
+        relative_url = reverse('chapter_detail', args=[self.pk])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url

@@ -5,14 +5,14 @@ from .views import CourseListCreateView, CourseDetail, CourseCartListCreateView,
 urlpatterns = [
     path("", CourseListCreateView.as_view(), name="course_list_create"),
     path("<uuid:pk>/update", CourseDetail.as_view(),
-         name="course_Update"),
+         name="course_detail"),
     path("cart/", CourseCartListCreateView.as_view(),
          name="course_cart"),
     path("enroll/", EnrollementListCreateView.as_view(), name="course_enroll"),
-    path("enroll/<uuid:id>", EnrollementDetail.as_view(),
+    path("enroll/<uuid:pk>", EnrollementDetail.as_view(),
          name="course_enroll_detail"),
 
-    path("review/", ReviewerListCreateView.as_view(), name="course_review"),
+    path("review/", ReviewerListCreateView.as_view(), name="course_review_list"),
     path("review/<uuid:id>", ReviewerDetail.as_view(),
          name="course_review_detail"),
 

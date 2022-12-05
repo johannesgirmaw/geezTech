@@ -2,11 +2,11 @@ import uuid
 from django.db import models
 from applications.chapters.models import Chapter
 from applications.content.models import Content
-
+from django.urls import reverse
 from applications.course.models import Course
 from commons.authentication.models import CustomUser
 from commons.enums import PROGRESS_STATUS
-# Create your models here.
+from elearning_backend.settings import get_env_variable
 
 
 class UserCourseProgress(models.Model):
@@ -23,6 +23,11 @@ class UserCourseProgress(models.Model):
     class Meta:
         db_table = "user_course_progress"
 
+    def get_absolute_url(self):
+        relative_url = reverse('course_progress_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
+
 
 class UserChapterProgress(models.Model):
     id = models.CharField(primary_key=True, unique=True,
@@ -38,6 +43,11 @@ class UserChapterProgress(models.Model):
     class Meta:
         db_table = "user_chapter_progress"
 
+    def get_absolute_url(self):
+        relative_url = reverse('chapter_progress_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
+
 
 class UserContentProgress(models.Model):
     id = models.CharField(primary_key=True, unique=True,
@@ -52,3 +62,8 @@ class UserContentProgress(models.Model):
 
     class Meta:
         db_table = "user_content_progress"
+
+    def get_absolute_url(self):
+        relative_url = reverse('content_progress_detail', args=[self.id])
+        url = get_env_variable("DOMAIN_NAME") + relative_url
+        return url
