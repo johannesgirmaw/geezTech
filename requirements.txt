@@ -28,16 +28,13 @@ configobj==5.0.6
 coreapi==2.3.3
 coreschema==0.0.4
 cryptography==37.0.4
-cupshelpers==1.0
 dbus-python==1.2.16
 decorator==4.4.2
 decouple==0.0.7
 defer==1.0.6
 defusedxml==0.7.1
-deja-dup-caja==0.0.6
 distlib==0.3.0
 distro==1.4.0
-distro-info===0.23ubuntu1
 dj-database-url==1.0.0
 dj-rest-auth==2.2.5
 Django==4.1.1
