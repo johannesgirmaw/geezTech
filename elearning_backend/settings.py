@@ -28,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
-DEBUG = False
+DEBUG = True
 
 if DEBUG == True:
     def get_env_variable(var_name):
         try:
-            return os.environ[var_name]
+            return os.getenv(var_name)
         except KeyError:
             error_msg = "set the %s environment variable" % var_name
             raise ImproperlyConfigured(error_msg)
