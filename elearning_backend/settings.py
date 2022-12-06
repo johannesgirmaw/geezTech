@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG == True:
     def get_env_variable(var_name):
