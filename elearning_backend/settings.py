@@ -28,21 +28,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
+DEBUG = True
 
-def get_env_variable(var_name):
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+if DEBUG == True:
+    def get_env_variable(var_name):
+        try:
+            return os.environ[var_name]
+        except KeyError:
+            error_msg = "set the %s environment variable" % var_name
+            raise ImproperlyConfigured(error_msg)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable('SECRET_KEY')
-
+if DEBUG == True:
+    SECRET_KEY = get_env_variable('SECRET_KEY')
+else:
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 # ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 ALLOWED_HOSTS = ["*"]
