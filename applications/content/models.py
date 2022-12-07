@@ -16,7 +16,7 @@ class Content(CommonsModel):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
     chapter = models.ForeignKey(
-        Chapter, on_delete=models.PROTECT)
+        Chapter,null=True, on_delete=models.PROTECT)
 
     content_number = models.IntegerField(default=0)
 
@@ -32,7 +32,7 @@ class Content(CommonsModel):
                                  default=" ")
 
     content_creator = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name="content_creator",)
+        User, null=True, on_delete=models.PROTECT, related_name="content_creator",)
 
     content_type = models.IntegerField(
         choices=CONTENT_TYPE, default=100)

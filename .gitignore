@@ -20,7 +20,6 @@ applications/course/migrations
 commons/message_util/migrations
 commons/utils/__pycache__
 commons/message_util/__pycache__
-<<<<<<< HEAD
 applications/category/migrations/
 applications/chapters/migrations/
 applications/content/migrations/
@@ -29,7 +28,6 @@ commons/authentication/migrations/
 applications/course_progress/migrations/
 
 
-=======
 
 
 commons/feedback/__pycache__
@@ -38,4 +36,3 @@ applications/content/__pycache__
 applications/content/migrations
 applications/assignment/__pycache__
 applications/assignment/migrations
->>>>>>> afbb376d3877d4c046786d1ebca109e4cf8d174e
