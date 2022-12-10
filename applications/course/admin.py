@@ -5,8 +5,8 @@ from .models import Course
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ('instructor_id', 'reviewer_id', 'catagory_id', 'course_name', 'course_code', 'course_image',
-                    'course_description', 'course_video', 'course_price_id', 'course_type', 'course_level')
+    list_display = ('instructor_id', 'reviewer_id', 'course_name', 'course_code', 'course_image',
+                    'course_description', 'course_video', 'course_price_id')
 
 
 admin.site.register(Course, CourseAdmin)

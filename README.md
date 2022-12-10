@@ -39,6 +39,16 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
 - [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
 - [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- [ ] 
+
+##### * [ ] If you want to use both GitHub and GitLab:
+
+* [ ] `git remote add github <your-github-url>` # create a remote for GitHub
+* [ ] `git remote add gitlab <your-gitlab-url>`  # create another remote for GitLab
+* [ ] `git push -u github <local_branch_name>`   # set the default upstream to GitHub
+* [ ] If you want to change your remote URL from GitLab to GitHub:
+* [ ] `git remote set-url origin <your-github-url>`  # use GitHub as your (only) origin
+* [ ] Depoyment in railway use this link : [Railway deployment](https://dev.to/mr_destructive/django-postgresql-deployment-on-railway-app-d54)
 
 ---
 

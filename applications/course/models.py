@@ -28,26 +28,35 @@ class CoursePrice(models.Model):
 
 
 class Course(models.Model):
+    def uploadFiles(instance, file_name):
+        url = f"course/course_image/{instance}/{file_name}"
+        return url
+
+    def uploadVideoFiles(instance, file_name):
+        url = f"course/course_video/{instance}/{file_name}"
+        return url
+
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    instructor = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT)
-    reviewer = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name="reviewer")
-    catagory = models.ForeignKey(Category, on_delete=models.PROTECT, )
+
     course_name = models.CharField(max_length=50)
     course_code = models.CharField(max_length=50)
     course_image = models.ImageField(
-        upload_to="course/course_image/" + str(course_name), blank=True, null=True)
+        upload_to=uploadFiles, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     course_description = models.CharField(
         max_length=100, default="description")
-    course_video = models.FileField(upload_to="course/course_video/",
-                                    null=True,  default=" ")
+    course_video = models.FileField(upload_to=uploadVideoFiles)
     course_price = models.ForeignKey(
         CoursePrice, on_delete=models.PROTECT, related_name='course_price')
     assisitant_instructor_id = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="assistant", null=True)
+    instructor = models.ForeignKey(
+        User, on_delete=models.PROTECT)
+    reviewer = models.ForeignKey(
+        User, on_delete=models.PROTECT, related_name="reviewer")
+    catagory = models.ForeignKey(
+        Category, on_delete=models.PROTECT, related_name="category", null=True)
     course_type = models.IntegerField(choices=COURSE_TYPE, default=100)
     course_level = models.IntegerField(choices=COURE_LEVEL, default=100)
 

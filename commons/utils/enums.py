@@ -36,3 +36,11 @@ class PROGRESS_STATUS(models.IntegerChoices):
     STARTED = 100
     ON_PROGRESS = 101
     FINISHED = 102
+
+
+class CONTENT_TYPE(models.IntegerChoices):
+    VIDEO = 100
+    IMAGE = 101
+    DOCUMENT = 102
+    QUESTION = 103
+    YOUTUBE_VIDEO = 104

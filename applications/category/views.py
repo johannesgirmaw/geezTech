@@ -34,7 +34,7 @@ class ListCategory(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         x = Category.objects.filter(category_name='food').last()
-        request.data.__setitem__('category_name', 'x.description')
+        # request.data.__setitem__('category_name', 'x.description')
         create = self.create(request, *args, **kwargs)
         return create
 

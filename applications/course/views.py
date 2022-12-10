@@ -23,6 +23,10 @@ class CourseListCreateView(generics.ListCreateAPIView):
     search_fields = ['course_name']
     ordering_fields = ['course_name', 'course_description']
 
+    def perform_create(self, serializer):
+        print(self.request)
+        return super().perform_create(serializer)
+
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [CustomPermission]
