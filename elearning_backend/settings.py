@@ -30,13 +30,13 @@ environ.Env.read_env()
 
 DEBUG = True
 
-if DEBUG == True:
-    def get_env_variable(var_name):
-        try:
-            return os.getenv(var_name)
-        except KeyError:
-            error_msg = "set the %s environment variable" % var_name
-            raise ImproperlyConfigured(error_msg)
+
+def get_env_variable(var_name):
+    try:
+        return os.getenv(var_name)
+    except KeyError:
+        error_msg = "set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
