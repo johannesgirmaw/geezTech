@@ -17,7 +17,7 @@ class Chapter(CommonsModel):
     chapter_title = models.CharField(max_length=50)
     chapter_number = models.IntegerField(default=0)
     course = models.ForeignKey(
-        Course, on_delete=models.PROTECT, related_name='courses_id', null=True)
+        Course, on_delete=models.PROTECT, related_name='chapters_in_courses', null=True)
 
     class Meta:
         ordering = ('chapter_name', 'chapter_title')

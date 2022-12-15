@@ -13,10 +13,10 @@ class UserCourseProgress(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
 
-    course = models.ForeignKey(
-        Course, on_delete=models.PROTECT, related_name='course_id')
+    course = models.OneToOneField(
+        Course, on_delete=models.PROTECT, related_name='course_progresses_in_course')
     user = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name='course_user')
+        CustomUser, on_delete=models.PROTECT, related_name='course_progresses_in_user')
     course_progress_status = models.IntegerField(
         choices=PROGRESS_STATUS.choices, default=PROGRESS_STATUS.STARTED)
 
@@ -33,10 +33,10 @@ class UserChapterProgress(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
 
-    chapter = models.ForeignKey(
-        Chapter, on_delete=models.PROTECT, related_name='chapter_id')
+    chapter = models.OneToOneField(
+        Chapter, on_delete=models.PROTECT, related_name='chapter_progresses_in_chapter')
     user = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name='chapter_user')
+        CustomUser, on_delete=models.PROTECT, related_name='chapter_progresses_in_user')
     chapter_progress_status = models.IntegerField(
         choices=PROGRESS_STATUS.choices, default=PROGRESS_STATUS.STARTED)
 
@@ -53,10 +53,10 @@ class UserContentProgress(models.Model):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
 
-    content = models.ForeignKey(
-        Content, on_delete=models.PROTECT, related_name='content_id')
+    content = models.OneToOneField(
+        Content, on_delete=models.PROTECT, related_name='content_progresses_in_content')
     user = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name='content_user')
+        CustomUser, on_delete=models.PROTECT, related_name='content_progresses_in_user')
     content_progress_status = models.IntegerField(
         choices=PROGRESS_STATUS.choices, default=PROGRESS_STATUS.STARTED)
 

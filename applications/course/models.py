@@ -48,15 +48,15 @@ class Course(models.Model):
         max_length=100, default="description")
     course_video = models.FileField(upload_to=uploadVideoFiles)
     course_price = models.ForeignKey(
-        CoursePrice, on_delete=models.PROTECT, related_name='course_price')
+        CoursePrice, on_delete=models.PROTECT, related_name='courses_in_price')
     assisitant_instructor_id = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name="assistant", null=True)
+        User, on_delete=models.PROTECT, related_name="courses_in_assistant", null=True)
     instructor = models.ForeignKey(
-        User, on_delete=models.PROTECT)
+        User, related_name='courses_in_instructor', on_delete=models.PROTECT)
     reviewer = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name="reviewer")
+        User, on_delete=models.PROTECT, related_name="courses_in_reviewer")
     catagory = models.ForeignKey(
-        Category, on_delete=models.PROTECT, related_name="category", null=True)
+        Category, on_delete=models.PROTECT, related_name="courses_in_category", null=True)
     course_type = models.IntegerField(choices=COURSE_TYPE, default=100)
     course_level = models.IntegerField(choices=COURE_LEVEL, default=100)
 

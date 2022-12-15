@@ -74,4 +74,4 @@ class ListChapter(generics.ListCreateAPIView):
                 return super().perform_create(serializer)
         else:
             raise serializers.ValidationError(
-                ('Course id is already enrolled'))
+                ('Course is already enrolled'))

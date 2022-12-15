@@ -80,6 +80,10 @@ class EnrollementListCreateView(generics.ListCreateAPIView):
             # get content sorted with this specific course
             content = Content.objects.filter(
                 chapter_id=chapter.id).order_by("content_number").first()
+            print("content:--------", content)
+            if content.exists():
+                raise serializers.ValidationError(
+                    ('There is no content enrolled'))
             content_progress_data = {
                 "content": content.id, "user": self.request.POST.get("user")}
             content_progress_serializer = ContentProgressSerializer(

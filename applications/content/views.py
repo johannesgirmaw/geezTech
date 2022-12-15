@@ -23,14 +23,17 @@ class ContentListCreateView(generics.ListCreateAPIView):
         print(self.request.data["chapter"])
 
         last_content = Content.objects.filter(
-            chapter=self.request.data["chapter"]).order_by("content_number").last()
+            chapter=self.request.data["chapter"]).order_by("content_number").last().content_number
+        # print("last_content:", last_content.content_number)
         if last_content != None:
             last_content = last_content + 1
         else:
             last_content = 1
 
         # Since data in request is immutable, It should be copied and updated
+        # print("content:------->:", content)
         content = self.request.data.copy()
+        print("content:-------", content)
         content["content_number"] = last_content
 
         content_serializer = ContentSerializer(data=content)

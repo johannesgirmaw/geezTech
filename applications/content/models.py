@@ -13,7 +13,7 @@ User = settings.AUTH_USER_MODEL
 
 
 class Content(CommonsModel):
-    def uploadVideoFiles(instance, file_name):
+    def uploadFiles(instance, file_name):
         print(instance, file_name)
         if instance.content_type == CONTENT_TYPE.VIDEO:
             url = f"course/course_video/{instance}/{file_name}"
@@ -22,15 +22,20 @@ class Content(CommonsModel):
         elif instance.content_type == CONTENT_TYPE.IMAGE:
             url = f"course/image/{instance}/{file_name}"
         elif instance.content_type == CONTENT_TYPE.QUESTION:
-            url = f"course/web_html/{instance}/{file_name}"
-        elif instance.content_type == CONTENT_TYPE.YOUTUBE_VIDEO:
+            url = " "
+        return url
+
+    def uploadYoutubeUrl(instance, file_name):
+        if instance.content_type == CONTENT_TYPE.YOUTUBE_VIDEO:
             url = f"course/youtube_url/{instance}/{file_name}"
+        else:
+            url = " "
         return url
 
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
     chapter = models.ForeignKey(
-        Chapter, on_delete=models.PROTECT)
+        Chapter, related_name="contents_in_chapter", on_delete=models.PROTECT)
 
     content_number = models.IntegerField(default=0)
 
@@ -38,8 +43,9 @@ class Content(CommonsModel):
     updated_at = models.DateTimeField(auto_now_add=True)
     content_description = models.CharField(
         max_length=100, default="description")
-    url = models.FileField(upload_to=uploadVideoFiles, blank=True, null=True)
-
+    url = models.FileField(upload_to=uploadFiles, blank=True, null=True)
+    youtube_url = models.URLField(
+        max_length=1000, blank=True, null=True)
     content_creator = models.ForeignKey(
         CustomUser, on_delete=models.PROTECT, related_name="content_creator",)
 

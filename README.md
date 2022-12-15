@@ -2,8 +2,6 @@
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
 ## Add your files
@@ -39,7 +37,7 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
 - [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
 - [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-- [ ] 
+- [ ]
 
 ##### * [ ] If you want to use both GitHub and GitLab:
 
@@ -49,6 +47,13 @@ Use the built-in continuous integration in GitLab.
 * [ ] If you want to change your remote URL from GitLab to GitHub:
 * [ ] `git remote set-url origin <your-github-url>`  # use GitHub as your (only) origin
 * [ ] Depoyment in railway use this link : [Railway deployment](https://dev.to/mr_destructive/django-postgresql-deployment-on-railway-app-d54)
+
+##### * [ ] If you want to close database connection which is opened:
+
+* [ ] `select * from pg_stat_activity where pg_stat_activity.datname='elearning'` #
+* [ ] `select pg_terminate_backend(pid) from pg_stat_activity where datname='elearning'`
+* [ ] `drop database elearning `
+* [ ]
 
 ---
 
