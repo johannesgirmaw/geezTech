@@ -10,10 +10,9 @@ class CourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Course
-        fields = ('id', 'instructor_id', 'reviewer_id', 'catagory_id', 'course_name',
-                  'course_code', 'course_image', 'created_at', 'updated_at', 'course_description',
-                  'course_video', 'course_price', 'assisitant_instructor_id', 'course_type', 'course_level',
-                  'course_progress', 'get_absolute_url')
+        fields = '__all__'
+        # fields = ['id', 'instructor_id', 'reviewer_id', 'course_name', 'course_code', 'course_image',
+        #           'created_at', 'updated_at', 'course_description', 'course_video', 'course_price', 'course_progress', 'get_absolute_url']
 
 
 class CourseCartSerializer(serializers.ModelSerializer):

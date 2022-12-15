@@ -33,17 +33,14 @@ DEBUG = True
 if DEBUG == True:
     def get_env_variable(var_name):
         try:
-            return os.environ[var_name]
+            return os.getenv(var_name)
         except KeyError:
             error_msg = "set the %s environment variable" % var_name
             raise ImproperlyConfigured(error_msg)
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if DEBUG == True:
-    SECRET_KEY = get_env_variable('SECRET_KEY')
-else:
-    SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'django-insecure-ql8^uxw*@k5rhmq)f7ae3=4mtsy4bjr^31+99r(7096&4h(*$1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 

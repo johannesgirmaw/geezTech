@@ -13,6 +13,20 @@ User = settings.AUTH_USER_MODEL
 
 
 class Content(CommonsModel):
+    def uploadVideoFiles(instance, file_name):
+        print(instance, file_name)
+        if instance.content_type == CONTENT_TYPE.VIDEO:
+            url = f"course/course_video/{instance}/{file_name}"
+        elif instance.content_type == CONTENT_TYPE.DOCUMENT:
+            url = f"course/document/{instance}/{file_name}"
+        elif instance.content_type == CONTENT_TYPE.IMAGE:
+            url = f"course/image/{instance}/{file_name}"
+        elif instance.content_type == CONTENT_TYPE.QUESTION:
+            url = f"course/web_html/{instance}/{file_name}"
+        elif instance.content_type == CONTENT_TYPE.YOUTUBE_VIDEO:
+            url = f"course/youtube_url/{instance}/{file_name}"
+        return url
+
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
     chapter = models.ForeignKey(
@@ -21,21 +35,16 @@ class Content(CommonsModel):
     content_number = models.IntegerField(default=0)
 
     content_title = models.CharField(max_length=50)
-    image_url = models.ImageField(
-        upload_to="course/content/content_image/", blank=True, null=True)
-    doc_url = models.FileField(
-        upload_to="course/content/content_document/", blank=True, null=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     content_description = models.CharField(
         max_length=100, default="description")
-    video_url = models.FileField(upload_to="course/content/content_video/",
-                                 default=" ")
+    url = models.FileField(upload_to=uploadVideoFiles, blank=True, null=True)
 
     content_creator = models.ForeignKey(
         User, null=True, on_delete=models.PROTECT, related_name="content_creator",)
 
     content_type = models.IntegerField(
-        choices=CONTENT_TYPE, default=100)
+        choices=CONTENT_TYPE.choices, default=CONTENT_TYPE.VIDEO)
 
     class Meta:
         ordering = ('content_title',)
