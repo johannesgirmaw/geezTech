@@ -12,7 +12,7 @@ class Category(models.Model):
 
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    parent_id = models.ForeignKey(
+    parent = models.ForeignKey(
         "self", on_delete=models.DO_NOTHING, null=True, related_name='parent_category')
     category_name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)

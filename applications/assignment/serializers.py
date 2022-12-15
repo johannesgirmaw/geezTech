@@ -1,5 +1,5 @@
 from rest_framework import serializers, reverse
-from .models import Answers, Questions, Options, UserAnswers, UserQuizeResults
+from .models import Answers, Questions, Options, UserAnswers, UserQuizeResults, Certificates
 from .validators import validate_question_num
 class OptionsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,7 +15,7 @@ class QuestionsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Questions
-        fields = ['url_hyperLink','id',"content_id",'question','options']
+        fields = ['url_hyperLink','id',"content",'question','options']
     # def validate_question_num(self,value):
     #     print(value)
     #     obj = Questions.objects.filter(question_num__exact = value)
@@ -48,3 +48,8 @@ class UserQuizeResultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserQuizeResults
         fields = '__all__'
+
+class CertificatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificates
+        fields = ['id','certificate_date','result','certificate_url','description','user','course','detail_url']

@@ -48,7 +48,7 @@ class Course(models.Model):
         max_length=100, default="description")
     course_video = models.FileField(upload_to=uploadVideoFiles)
     course_price = models.ForeignKey(
-        CoursePrice, on_delete=models.PROTECT, related_name='courses_in_price')
+        CoursePrice, null=True, on_delete=models.PROTECT, related_name='courses_in_price')
     assisitant_instructor_id = models.ForeignKey(
         User, on_delete=models.PROTECT, related_name="courses_in_assistant", null=True)
     instructor = models.ForeignKey(

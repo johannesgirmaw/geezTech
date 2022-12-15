@@ -35,7 +35,7 @@ class Content(CommonsModel):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
     chapter = models.ForeignKey(
-        Chapter, related_name="contents_in_chapter", on_delete=models.PROTECT)
+        Chapter, null=True, related_name="contents_in_chapter", on_delete=models.PROTECT)
 
     content_number = models.IntegerField(default=0)
 
@@ -47,7 +47,7 @@ class Content(CommonsModel):
     youtube_url = models.URLField(
         max_length=1000, blank=True, null=True)
     content_creator = models.ForeignKey(
-        CustomUser, on_delete=models.PROTECT, related_name="content_creator",)
+        User, null=True, on_delete=models.PROTECT, related_name="content_creator",)
 
     content_type = models.IntegerField(
         choices=CONTENT_TYPE.choices, default=CONTENT_TYPE.VIDEO)

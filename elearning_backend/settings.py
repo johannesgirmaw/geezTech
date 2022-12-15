@@ -242,6 +242,10 @@ URL_FRONT = "https://geez-elearning.herokuapp.com/"
 ACCOUNT_ADAPTER = 'commons.utils.authenticaton_utils.DefaultAccountAdapterCustom'
 REGISTER_VERIFICATION_URL = "http://localhost:3000/user/activate"
 
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'commons.authentication.serializer.UserSerializer',
+}
 # Managing refresh tokens
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
@@ -267,8 +271,8 @@ SIMPLE_JWT = {
     "JTI_CLAIM": "jti",
     "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
     "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=0.5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(minutes=2),
     "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainPairSerializer",
     "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
     "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
