@@ -24,7 +24,7 @@ class DetailCategory(generics.RetrieveUpdateDestroyAPIView):
 
 class ListCategory(generics.ListCreateAPIView):
     permission_classes = [CustomPermission]
-    queryset = Category.objects.order_by('?')
+    queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
     pagination_class = CustomCursorPagination
@@ -32,11 +32,11 @@ class ListCategory(generics.ListCreateAPIView):
     search_fields = ['category_name', 'description']
     ordering_fields = ['category_name', 'description']
 
-    def post(self, request, *args, **kwargs):
-        x = Category.objects.filter(category_name='food').last()
-        # request.data.__setitem__('category_name', 'x.description')
-        create = self.create(request, *args, **kwargs)
-        return create
+    # def post(self, request, *args, **kwargs):
+    #     x = Category.objects.filter(category_name='food').last()
+    #     request.data.__setitem__('category_name', 'x.description')
+    #     create = self.create(request, *args, **kwargs)
+    #     return create
 
 
 class GeneratePdf(generics.ListAPIView):
