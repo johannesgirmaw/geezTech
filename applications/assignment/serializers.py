@@ -15,7 +15,7 @@ class QuestionsSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Questions
-        fields = ['url_hyperLink','id',"content_id",'question','options']
+        fields = ['url_hyperLink','id',"content",'question','options']
     # def validate_question_num(self,value):
     #     print(value)
     #     obj = Questions.objects.filter(question_num__exact = value)

@@ -17,7 +17,7 @@ class CustomPagination(pagination.PageNumberPagination):
 
 
 class CustomCursorPagination(pagination.CursorPagination):
-    page_size = 2
+    page_size = 5
     ordering = 'category_name'
 
     def get_ordering(self, request, queryset, view):

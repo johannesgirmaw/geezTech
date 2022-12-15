@@ -12,7 +12,7 @@ User = settings.AUTH_USER_MODEL
 
 
 class Questions(CommonsModel):
-    content_id = models.ForeignKey(Content, on_delete=models.CASCADE)
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
     question_num = models.FloatField(null = True)
     question = models.TextField()
 
@@ -21,7 +21,7 @@ class Questions(CommonsModel):
 
 
 class Options(CommonsModel):
-    question_id = models.ForeignKey(
+    question = models.ForeignKey(
         Questions, related_name='options', on_delete=models.CASCADE)
     value = models.CharField(max_length=200)
 
@@ -46,12 +46,17 @@ class UserAnswers(CommonsModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_correct = models.BooleanField()
 
+    def __str__(self):
+        return self.user
 
 class UserQuizeResults(CommonsModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.ForeignKey(Content, on_delete=models.CASCADE)
     result = models.FloatField()
     is_passed = models.BooleanField()
+
+    def __str__(self):
+        return user
 
 class Certificates(CommonsModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -60,7 +65,8 @@ class Certificates(CommonsModel):
     description = models.TextField()
     result = models.FloatField()
 
-
+    def __str__(self):
+        return f"{user} {course}"
 
     @property
     def certificate_date(self):
