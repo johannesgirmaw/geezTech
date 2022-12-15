@@ -33,7 +33,10 @@ DEBUG = True
 
 def get_env_variable(var_name):
     try:
-        return os.getenv(var_name)
+        if DEBUG == True:
+            return os.getenv("DEV_DOMAIN_NAME")
+        else:
+            return os.getenv("PROD_DOMAIN_NAME")
     except KeyError:
         error_msg = "set the %s environment variable" % var_name
         raise ImproperlyConfigured(error_msg)

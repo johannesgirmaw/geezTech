@@ -23,7 +23,8 @@ class CoursePrice(models.Model):
 
     def get_absolute_url(self):
         relative_url = reverse('course_progress_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
+        # url = get_env_variable("DOMAIN_NAME") + relative_url
+        url = 'https://geeztech-production.up.railway.app' + relative_url
         return url
 
 
@@ -72,7 +73,8 @@ class Course(models.Model):
 
     def get_absolute_url(self):
         relative_url = reverse('course_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
+        # url = get_env_variable("DOMAIN_NAME") + relative_url
+        url = 'https://geeztech-production.up.railway.app' + relative_url
         return url
 
 
