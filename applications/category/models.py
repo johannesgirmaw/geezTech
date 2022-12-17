@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from commons.utils.model_utils import CommonsModel
-
+from commons.utils.custom_fields import EvenIntegerField
 # Create your models here.
 
 
@@ -17,6 +17,7 @@ class Category(models.Model):
     category_name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     category_image = models.FileField(upload_to=uploadFiles, blank=True)
+    category_number = EvenIntegerField(null=True)
 
     class Meta:
         ordering = ('category_name', 'description')

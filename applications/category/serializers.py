@@ -1,12 +1,20 @@
+from applications.course.models import Course
 from applications.course.serializers import CourseSerializer
 from rest_framework import serializers
 from applications.category.models import Category
 
 
+class CategoryCourseSerializer(CourseSerializer):
+    class Meta:
+        model = Course
+        fields = ['id', 'course_name', 'course_code', 'course_image',
+                  'course_description', 'course_price', 'get_absolute_url']
+
+
 class CategorySerializer(serializers.ModelSerializer):
-    courses_in_category = CourseSerializer(many=True, read_only=True)
+    courses_in_category = CategoryCourseSerializer(many=True, read_only=True)
 
     class Meta:
         model = Category
         fields = ('category_name', 'description',
-                  'category_image', 'parent_id', 'courses_in_category')
+                  'category_image', 'parent_id', 'courses_in_category', 'category_number')
