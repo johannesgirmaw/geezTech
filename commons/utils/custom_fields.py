@@ -12,8 +12,8 @@ class JsonField(models.Field):
 
 class EvenIntegerField(models.IntegerField):
     def __init__(self, *args, **kwargs) -> None:
-        print("self:", dir(self))
-        print("args:", args)
-        print("kwargs:", kwargs)
+        # print("self:", dir(self))
+        # print("args:", args)
+        # print("kwargs:", kwargs)
         super().__init__(*args, **kwargs)
         super().validators.append(CustomValidators.even_integer)

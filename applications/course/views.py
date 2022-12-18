@@ -24,8 +24,13 @@ class CourseListCreateView(generics.ListCreateAPIView):
     ordering_fields = ['course_name', 'course_description']
 
     def perform_create(self, serializer):
-        print(self.request)
-        return super().perform_create(serializer)
+        id = self.request.user.id
+        course = self.request.data
+        course["instructor"] = id
+        course["reviewer"] = id
+        course_serializer = CourseSerializer(data=course)
+        if course_serializer.is_valid():
+            return super().perform_create(course_serializer)
 
 
 class CourseDetail(generics.RetrieveUpdateDestroyAPIView):

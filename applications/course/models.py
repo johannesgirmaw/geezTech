@@ -28,13 +28,9 @@ class CoursePrice(models.Model):
         return url
 
 
-class Course(models.Model):
+class Course(CommonsModel):
     def uploadFiles(instance, file_name):
         url = f"course/course_image/{instance}/{file_name}"
-        return url
-
-    def uploadVideoFiles(instance, file_name):
-        url = f"course/course_video/{instance}/{file_name}"
         return url
 
     id = models.CharField(primary_key=True, unique=True,
@@ -47,15 +43,14 @@ class Course(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     course_description = models.CharField(
         max_length=100, default="description")
-    course_video = models.FileField(upload_to=uploadVideoFiles)
     course_price = models.ForeignKey(
         CoursePrice, null=True, on_delete=models.PROTECT, related_name='courses_in_price')
-    assisitant_instructor_id = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name="courses_in_assistant", null=True)
+    # assisitant_instructor_id = models.ForeignKey(
+    #     User, on_delete=models.PROTECT, related_name="courses_in_assistant", null=True)
     instructor = models.ForeignKey(
-        User, related_name='courses_in_instructor', on_delete=models.PROTECT)
+        CustomUser, related_name='courses_in_instructor', on_delete=models.PROTECT, null=True)
     reviewer = models.ForeignKey(
-        User, on_delete=models.PROTECT, related_name="courses_in_reviewer")
+        User, on_delete=models.PROTECT, related_name="courses_in_reviewer",  null=True)
     catagory = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="courses_in_category", null=True)
     course_type = models.IntegerField(choices=COURSE_TYPE, default=100)

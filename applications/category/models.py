@@ -17,7 +17,7 @@ class Category(models.Model):
     category_name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     category_image = models.FileField(upload_to=uploadFiles, blank=True)
-    category_number = EvenIntegerField(null=True)
+    # category_number = EvenIntegerField(null=True)
 
     class Meta:
         ordering = ('category_name', 'description')
