@@ -2,22 +2,24 @@ import uuid
 from django.db import models
 from commons.utils.model_utils import CommonsModel
 from commons.utils.custom_fields import EvenIntegerField
+from django.urls import reverse
+
 # Create your models here.
 
 
-class Category(models.Model):
+class Category(CommonsModel):
     def uploadFiles(instance, file_name):
         url = f"category/{instance}/{file_name}"
         return url
-
-    id = models.CharField(primary_key=True, unique=True,
-                          default=uuid.uuid4, editable=False, max_length=36)
-    parent = models.ForeignKey(
-        "self", on_delete=models.DO_NOTHING, null=True, related_name='parent_category')
     category_name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
     category_image = models.FileField(upload_to=uploadFiles, blank=True)
-    # category_number = EvenIntegerField(null=True)
+
+    def get_absolute_url(self):
+        return reverse("category-detail", kwargs={"pk": self.pk})
+
+    def detail_url(self):
+        return self.get_absolute_url()
 
     class Meta:
         ordering = ('category_name', 'description')

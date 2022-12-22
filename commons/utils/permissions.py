@@ -58,3 +58,9 @@ class CustomPermission(permissions.BasePermission):
         )
         return self._check_permission(request_param, queryset, user)
 
+
+
+class IsSystemAdminUser(permissions.BasePermission):
+    
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_superuser)

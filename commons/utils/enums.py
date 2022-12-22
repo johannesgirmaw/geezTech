@@ -50,3 +50,13 @@ class CONTENT_TYPE(models.IntegerChoices):
 class COURSE_STATUS(models.IntegerChoices):
     CREATED = 100
     PUBLISHED = 101
+
+
+class EDUCATIONAL_LEVEL(models.IntegerChoices):
+    Elementary = 100
+    Secondary = 101
+    Level_III_Diploma_TVET = 102
+    Bachelor_of_Education = 103
+    Bachelor_of_Arts_or_Science = 104
+    Master = 105
+    Doctorate = 106

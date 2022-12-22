@@ -3,9 +3,14 @@ from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 from django.contrib.contenttypes.models import ContentType
 from commons.utils.model_utils import CommonsModel
+from commons.utils.enums import EDUCATIONAL_LEVEL
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django.conf import settings
 import uuid
 # Create your models here.
+
+User = settings.AUTH_USER_MODEL
 
 class Group(CommonsModel):
     name = models.CharField(_("name"), max_length=150, unique=True)
@@ -28,7 +33,12 @@ class Group(CommonsModel):
 class CustomUser(AbstractUser):
     id = models.CharField(primary_key=True, unique=True,
                           default=uuid.uuid4, editable=False, max_length=36)
-    middle_name = models.CharField(max_length=200, default="")
+    middle_name = models.CharField(max_length=200 )
+    last_name  = models.CharField(max_length=200, blank=True, default="")
+    date_of_birth = models.DateField(auto_now=False, null=True,auto_now_add=False)
+    profile_pic = models.ImageField(_("profile pic"), upload_to="profile_pic",null= True, max_length=None)
+
+
     
     user_permissions = models.ManyToManyField(
         ContentType,
@@ -70,7 +80,7 @@ class CustomUser(AbstractUser):
 
 
 class UserPermission(CommonsModel):
-    user = models.ForeignKey(CustomUser, verbose_name=_("user"),related_name="user_permission", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name=_("user"),related_name="user_permission", on_delete=models.CASCADE)
     content_type = models.ForeignKey(ContentType, verbose_name=_("content type"), on_delete=models.CASCADE)
     can_view = models.BooleanField(default= False, verbose_name=_("can_views"))
     can_change = models.BooleanField(default= False)
@@ -90,3 +100,18 @@ class GroupPermission(CommonsModel):
 
     def __str__(self):
         return self.group.name + " " + self.content_type.model
+
+
+class EducationalBackground(CommonsModel):
+    user = models.ForeignKey(User, verbose_name=_("user background"), related_name="educational_background", on_delete=models.CASCADE)
+    level_of_education = models.IntegerField(_("level of education"), choices=EDUCATIONAL_LEVEL.choices)
+    school_of_education = models.CharField(_("school of education"), max_length=200)
+    document = models.FileField(upload_to="educational_background/", max_length = 100)
+    year_of_completion = models.DateField(auto_now=False, auto_now_add=False)
+    
+    def __str__(self):
+        return self.level_of_education
+
+    def get_absolute_url(self):
+        return reverse("detail-educational-background", kwargs={"pk": self.pk})
+    
