@@ -1,16 +1,17 @@
 from django.db import models
 
-COURSE_TYPE = [
-    (100, 'free'),
-    (101, 'premium'),
-    (102, 'sponsord'),
-]
 
-COURE_LEVEL = [
-    (100, 'biginner'),
-    (101, 'intermediate'),
-    (102, 'advanced'),
-]
+class COURSE_TYPE(models.IntegerChoices):
+    FREE = 100
+    PREMIUM = 101
+    SPONSORED = 102
+
+
+class COURSE_LEVEL(models.IntegerChoices):
+    BEGINNER = 100
+    INTERMEDIATE = 101
+    ADVANCED = 102
+
 
 CONTENT_TYPE = [
     (100, 'content'),
@@ -44,3 +45,8 @@ class CONTENT_TYPE(models.IntegerChoices):
     DOCUMENT = 102
     QUESTION = 103
     YOUTUBE_VIDEO = 104
+
+
+class COURSE_STATUS(models.IntegerChoices):
+    CREATED = 100
+    PUBLISHED = 101
