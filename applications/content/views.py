@@ -23,8 +23,10 @@ class ContentListCreateView(generics.ListCreateAPIView):
         print(self.request.data["chapter"])
 
         last_content = Content.objects.filter(
-            chapter=self.request.data["chapter"]).order_by("content_number").last().content_number
+            chapter=self.request.data["chapter"]).order_by("content_number").last()
         # print("last_content:", last_content.content_number)
+        if last_content != None:
+            last_content = last_content.content_number
         if last_content != None:
             last_content = last_content + 1
         else:
@@ -32,7 +34,8 @@ class ContentListCreateView(generics.ListCreateAPIView):
 
         # Since data in request is immutable, It should be copied and updated
         # print("content:------->:", content)
-        content = self.request.data.copy()
+        print("content:-------", self.request.data)
+        content = self.request.data
         print("content:-------", content)
         content["content_number"] = last_content
 

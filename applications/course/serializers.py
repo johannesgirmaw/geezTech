@@ -1,4 +1,5 @@
 
+from commons.authentication.serializer import UserSerializer
 from rest_framework import serializers
 
 from applications.course_progress.serializers import CourseProgressSerializer
@@ -7,12 +8,14 @@ from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
 
 class CourseSerializer(serializers.ModelSerializer):
     course_progress = CourseProgressSerializer(many=True, read_only=True)
+    # categorys = CategorySerializer(many=True, read_only=True)
+    instructors = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Course
         fields = '__all__'
-        # fields = ['id', 'instructor_id', 'reviewer_id', 'course_name', 'course_code', 'course_image',
-        #           'updated_at', 'course_description', 'course_video', 'course_price', 'course_progress', 'get_absolute_url']
+        # fields = ['id',  'instructors',   'course_name', 'course_code', 'course_image',
+        #           'updated_at', 'course_description',   'course_price', 'course_progress', 'get_absolute_url']
 
 
 class CourseCartSerializer(serializers.ModelSerializer):
