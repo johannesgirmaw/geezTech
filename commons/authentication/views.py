@@ -1,10 +1,10 @@
 from dj_rest_auth.registration.views import RegisterView
-from .serializer import CustomRegisterSerializer, UserSerializer, AdminRegisterSerializer, GroupSerializer, UserPermissionSerializer
+from .serializer import CustomRegisterSerializer, UserSerializer, AdminRegisterSerializer, GroupSerializer, UserPermissionSerializer, EducationalBackgroundSerializer, UserDetailSerializer
 from django.contrib.auth.base_user import BaseUserManager
 from rest_framework import generics
-from .models import CustomUser, Group, UserPermission
+from .models import CustomUser, Group, UserPermission, EducationalBackground
 from rest_framework import filters
-from rest_framework.permissions import IsAdminUser
+from ..utils.permissions import IsSystemAdminUser
 
 
 class CustomRegisterView(RegisterView):
@@ -35,15 +35,33 @@ class DetailGroup(generics.RetrieveUpdateDestroyAPIView):
 
 
 class CustomUserManager(generics.CreateAPIView):
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsSystemAdminUser]
     serializer_class = AdminRegisterSerializer
 
 
-class ListUserPermission(generics.ListCreateAPIView):
+class ListUserPermission(generics.ListAPIView):
+    permission_classes = [IsSystemAdminUser,]
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer
 
 
-class DetailUserPermission(generics.RetrieveUpdateDestroyAPIView):
+class DetailUserPermission(generics.RetrieveAPIView):
+    permission_classes = [IsSystemAdminUser]
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer
+
+
+class ListEducationalBackground(generics.ListCreateAPIView):
+    permission_classes = [IsSystemAdminUser,]
+    queryset = EducationalBackground.objects.all()
+    serializer_class = EducationalBackgroundSerializer
+
+
+class DetailEducationalBackground(generics.RetrieveAPIView):
+    permission_classes = [IsSystemAdminUser]
+    queryset = EducationalBackground.objects.all()
+    serializer_class = EducationalBackgroundSerializer
+ 
+class UserDetail(generics.RetrieveAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserDetailSerializer
