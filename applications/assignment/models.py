@@ -22,7 +22,7 @@ class Questions(CommonsModel):
 
 class Options(CommonsModel):
     question = models.ForeignKey(
-        Questions, related_name='options', on_delete=models.CASCADE)
+        Questions, related_name='options',null=True , on_delete=models.CASCADE)
     value = models.CharField(max_length=200)
 
     def __str__(self):
