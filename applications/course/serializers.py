@@ -46,3 +46,12 @@ class CoursePriceSerializer(serializers.ModelSerializer):
         verbose_name = 'CoursePrice'
         verbose_name_plural = 'CoursePrices'
         fields = ('id', 'price', 'instructor_price', 'get_absolute_url')
+
+
+class InstructorShareSerializer(serializers.ModelSerializer):
+    class Meta:
+        db_table = ''
+        managed = True
+        verbose_name = 'InstructorShare'
+        verbose_name_plural = 'InstructorShares'
+        fields = ('id', 'min_price', 'share_percent')

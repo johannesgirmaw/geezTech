@@ -77,15 +77,18 @@ INSTALLED_APPS = [
     "django_filters",
     'rest_framework_simplejwt.token_blacklist',
     # Local
+    # Common apps
     'commons.authentication.apps.AuthenticationConfig',
+    'commons.message_util.apps.MessageUtilConfig',
+    'commons.feedback.apps.FeedbackConfig',
+    'commons.about_us.apps.AboutUsConfig',
+    # Apps
     'applications.course.apps.CourseConfig',
     'applications.category.apps.CategoryConfig',
-    'commons.message_util.apps.MessageUtilConfig',
     'applications.chapters.apps.ChaptersConfig',
     'applications.content.apps.ContentConfig',
     'applications.assignment.apps.AssignmentConfig',
-    'applications.course_progress.apps.CourseProgressConfig',
-    'commons.feedback.apps.FeedbackConfig'
+    'applications.course_progress.apps.CourseProgressConfig'
 ]
 
 REST_FRAMEWORK = {

@@ -6,8 +6,8 @@ from applications.course_progress.serializers import ChapterProgressSerializer, 
 
 from commons.utils.permissions import CustomPermission
 from rest_framework import generics
-from .models import Course, Course_Cart, CoursePrice, Enrollement, Reviewer
-from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer
+from .models import Course, Course_Cart, CoursePrice, Enrollement, InstructorShare, Reviewer
+from .serializers import CoursePriceSerializer, CourseReviewSerializer, CourseSerializer, CourseCartSerializer, EnrollementSerializer, InstructorShareSerializer
 from rest_framework import filters
 from applications.course_progress.models import UserCourseProgress
 from rest_framework import serializers
@@ -129,3 +129,15 @@ class CoursePriceDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [CustomPermission]
     queryset = CoursePrice.objects.all()
     serializer_class = CoursePriceSerializer
+
+
+class InstructorShareListCreateView(generics.ListCreateAPIView):
+    permission_classes = [CustomPermission]
+    queryset = InstructorShare.objects.all()
+    serializer_class = InstructorShareSerializer
+
+
+class InstructorShareDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [CustomPermission]
+    queryset = InstructorShare.objects.all()
+    serializer_class = InstructorShareSerializer

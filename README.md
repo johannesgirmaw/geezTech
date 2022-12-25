@@ -39,7 +39,7 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 - [ ]
 
-##### * [ ] If you want to use both GitHub and GitLab:
+##### * [ ] If you want to use both GitHub and GitLab to deploy on Railway:
 
 * [ ] `git remote add github <your-github-url>` # create a remote for GitHub
 * [ ] `git remote add gitlab <your-gitlab-url>`  # create another remote for GitLab

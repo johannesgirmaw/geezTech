@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import CourseListCreateView, CourseDetail, CourseCartListCreateView, EnrollementListCreateView, EnrollementDetail, CoursePriceListCreateView, CoursePriceDetail, ReviewerDetail, ReviewerListCreateView
+from .views import CourseListCreateView, CourseDetail, CourseCartListCreateView, EnrollementListCreateView, EnrollementDetail, CoursePriceListCreateView, CoursePriceDetail, InstructorShareDetail, InstructorShareListCreateView, ReviewerDetail, ReviewerListCreateView
 
 urlpatterns = [
     path("", CourseListCreateView.as_view(), name="course_list_create"),
@@ -19,4 +19,8 @@ urlpatterns = [
     path("price/", CoursePriceListCreateView.as_view(), name="course_price"),
     path("price/<uuid:id>", CoursePriceDetail.as_view(),
          name="course_price_detail"),
+    path("share/", InstructorShareListCreateView.as_view(),
+         name="instructor_share_list"),
+    path("share/<uuid:id>", InstructorShareDetail.as_view(),
+         name="instructor_share_detail"),
 ]

@@ -124,3 +124,14 @@ class Reviewer(models.Model):
         relative_url = reverse('course_review_detail', args=[self.id])
         url = get_env_variable("DOMAIN_NAME") + relative_url
         return url
+
+
+class InstructorShare(models.Model):
+    id = models.CharField(primary_key=True, unique=True,
+                          default=uuid.uuid4, editable=False, max_length=36)
+    min_price = models.FloatField(
+        validators=[Validations.validate_price], default=0.0)
+    share_percent = models.IntegerField()
+
+    def __str__(self):
+        return self.min_price
