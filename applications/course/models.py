@@ -20,11 +20,11 @@ class CoursePrice(models.Model):
     instructor_price = models.FloatField(
         validators=[Validations.validate_price])
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_progress_detail', args=[self.id])
-        # url = get_env_variable("DOMAIN_NAME") + relative_url
-        url = 'https://geeztech-production.up.railway.app' + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_progress_detail', args=[self.id])
+    #     # url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     url = 'https://geeztech-production.up.railway.app' + relative_url
+    #     return url
 
 
 class Course(CommonsModel):
@@ -40,8 +40,6 @@ class Course(CommonsModel):
     course_image = models.ImageField(
         upload_to=uploadFiles, blank=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    course_description = models.CharField(
-        max_length=100, default="description")
     course_price = models.FloatField(
         validators=[Validations.validate_price], default=0.0)
     instructor = models.ManyToManyField(
@@ -54,6 +52,8 @@ class Course(CommonsModel):
         choices=COURSE_LEVEL.choices, default=COURSE_LEVEL.BEGINNER)
     course_status = models.IntegerField(
         choices=COURSE_STATUS.choices, default=COURSE_STATUS.CREATED)
+    description = models.CharField(
+        max_length=100, default="description")
 
     class Meta:
         ordering = ('course_name',)
@@ -65,11 +65,11 @@ class Course(CommonsModel):
     def created_at(self):
         return self.create_date
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_detail', args=[self.id])
-        # url = get_env_variable("DOMAIN_NAME") + relative_url
-        url = 'https://geeztech-production.up.railway.app' + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_detail', args=[self.id])
+    #     # url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     url = 'https://geeztech-production.up.railway.app' + relative_url
+    #     return url
 
 
 class Course_Cart(models.Model):
@@ -84,10 +84,10 @@ class Course_Cart(models.Model):
     def __str__(self):
         return self.user_id
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_progress_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_progress_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url
 
 
 class Enrollement(models.Model):
@@ -100,10 +100,10 @@ class Enrollement(models.Model):
     enroll_start_date = models.DateField(auto_now=True)
     enroll_end_date = models.DateField()
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_enroll_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_enroll_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url
 
 
 class Reviewer(models.Model):
@@ -120,10 +120,10 @@ class Reviewer(models.Model):
     def __str__(self):
         return self.comment
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_review_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_review_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url
 
 
 class InstructorShare(models.Model):

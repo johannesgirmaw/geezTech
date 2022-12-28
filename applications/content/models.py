@@ -62,7 +62,7 @@ class Content(CommonsModel):
     def __str__(self):
         return self.content_title
 
-    def get_absolute_url(self):
-        relative_url = reverse('content_Update', args=[self.pk])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('content_Update', args=[self.pk])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url

@@ -28,7 +28,7 @@ class EnrollementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Enrollement
         fields = ('id', 'user', 'course', 'enroll_start_date',
-                  'enroll_end_date', 'get_absolute_url')
+                  'enroll_end_date')
 
 
 class CourseReviewSerializer(serializers.ModelSerializer):
@@ -37,7 +37,7 @@ class CourseReviewSerializer(serializers.ModelSerializer):
         verbose_name = 'Reviewer'
         verbose_name_plural = 'Reviewers'
         fields = ('id', 'reviewer', 'course', 'comment',
-                  'rating', 'review_time', 'review_date', 'get_absolute_url')
+                  'rating', 'review_time', 'review_date')
 
 
 class CoursePriceSerializer(serializers.ModelSerializer):
@@ -45,7 +45,7 @@ class CoursePriceSerializer(serializers.ModelSerializer):
         model = CoursePrice
         verbose_name = 'CoursePrice'
         verbose_name_plural = 'CoursePrices'
-        fields = ('id', 'price', 'instructor_price', 'get_absolute_url')
+        fields = ('id', 'price', 'instructor_price')
 
 
 class InstructorShareSerializer(serializers.ModelSerializer):

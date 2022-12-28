@@ -23,10 +23,10 @@ class UserCourseProgress(models.Model):
     class Meta:
         db_table = "user_course_progress"
 
-    def get_absolute_url(self):
-        relative_url = reverse('course_progress_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('course_progress_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url
 
 
 class UserChapterProgress(models.Model):
@@ -43,10 +43,10 @@ class UserChapterProgress(models.Model):
     class Meta:
         db_table = "user_chapter_progress"
 
-    def get_absolute_url(self):
-        relative_url = reverse('chapter_progress_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('chapter_progress_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url
 
 
 class UserContentProgress(models.Model):
@@ -63,7 +63,7 @@ class UserContentProgress(models.Model):
     class Meta:
         db_table = "user_content_progress"
 
-    def get_absolute_url(self):
-        relative_url = reverse('content_progress_detail', args=[self.id])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('content_progress_detail', args=[self.id])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+    #     return url

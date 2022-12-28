@@ -13,7 +13,7 @@ class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
         fields = ['id', 'chapter_name', 'chapter_title',
-                  'chapter_number', 'course', 'get_absolute_url', 'contents_in_chapter', 'chapter_progresses_in_chapter']
+                  'chapter_number', 'course', 'contents_in_chapter', 'chapter_progresses_in_chapter']
         validators = [
             UniqueTogetherValidator(
                 queryset=Chapter.objects.all(),

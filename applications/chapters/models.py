@@ -25,7 +25,7 @@ class Chapter(CommonsModel):
     def __str__(self) -> str:
         return self.chapter_name
 
-    def get_absolute_url(self):
-        relative_url = reverse('chapter_detail', args=[self.pk])
-        url = get_env_variable("DOMAIN_NAME") + relative_url
-        return url
+    # def get_absolute_url(self):
+    #     relative_url = reverse('chapter_detail', args=[self.pk])
+    #     url = get_env_variable("DOMAIN_NAME") + relative_url
+        # return url

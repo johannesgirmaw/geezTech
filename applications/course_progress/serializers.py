@@ -7,18 +7,18 @@ class CourseProgressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserCourseProgress
         fields = ('id', 'course', 'user',
-                  'course_progress_status', 'get_absolute_url')
+                  'course_progress_status')
 
 
 class ChapterProgressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserChapterProgress
         fields = ('id', 'chapter', 'user',
-                  'chapter_progress_status', 'get_absolute_url')
+                  'chapter_progress_status')
 
 
 class ContentProgressSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserContentProgress
         fields = ("id", "content", "user",
-                  "content_progress_status", "get_absolute_url")
+                  "content_progress_status")
