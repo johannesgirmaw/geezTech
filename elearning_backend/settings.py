@@ -83,6 +83,7 @@ INSTALLED_APPS = [
     'commons.feedback.apps.FeedbackConfig',
     'commons.about_us.apps.AboutUsConfig',
     # Apps
+
     'applications.course.apps.CourseConfig',
     'applications.category.apps.CategoryConfig',
     'applications.chapters.apps.ChaptersConfig',
