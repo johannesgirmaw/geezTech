@@ -87,7 +87,7 @@ INSTALLED_APPS = [
     'applications.category.apps.CategoryConfig',
     'applications.chapters.apps.ChaptersConfig',
     'applications.content.apps.ContentConfig',
-    'applications.assignment.apps.AssignmentConfig',
+    # 'applications.assignment.apps.AssignmentConfig',
     'applications.course_progress.apps.CourseProgressConfig'
 ]
 
