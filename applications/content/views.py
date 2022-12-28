@@ -35,7 +35,7 @@ class ContentListCreateView(generics.ListCreateAPIView):
         # Since data in request is immutable, It should be copied and updated
         # print("content:------->:", content)
         print("content:-------", self.request.data)
-        content = self.request.data
+        content = self.request.data.copy()
         print("content:-------", content)
         content["content_number"] = last_content
 
