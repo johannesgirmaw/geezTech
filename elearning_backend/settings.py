@@ -76,7 +76,6 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "django_filters",
     'rest_framework_simplejwt.token_blacklist',
-    'reset_migrations',
     # Local
     # Common apps
     'commons.authentication.apps.AuthenticationConfig',
