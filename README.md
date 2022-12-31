@@ -52,8 +52,10 @@ Use the built-in continuous integration in GitLab.
 
 * [ ] `select * from pg_stat_activity where pg_stat_activity.datname='elearning'` #
 * [ ] `select pg_terminate_backend(pid) from pg_stat_activity where datname='elearning'`
-* [ ] `drop database elearning `
-* [ ]
+* [ ] `drop database elearning; `
+* [ ] To drop all tables in the current database
+  * [ ] `drop database elearning SELECT tablename, indexname, indexdef FROM pg_indexes WHERE schemaname = 'public' ORDER BY tablename, indexname; `
+
 
 ---
 
